@@ -7,22 +7,22 @@
 The goal of this website is to create a __fun and simple memory game__. The functionality is inspired by the indie game Among Us.
 
 # Table of Contents
-1. [Overview/Description](#1-overview-description)
-2. [User Stories](#3-user-stories)
-3. [User Experience (UX)](#4-user-experienceux)
+1. [Overview/Description](#1-overviewdescription)
+2. [User Stories](#2-user-stories)
+3. [User Experience (UX)](#3-user-experienceux)
     * [Strategy Plane](#strategy-plane)
     * [Scope Plane](#scope-plane)
     * [Structure Plane](#structure-plane)
     * [Skeleton Plane](#skeleton-plane)
     * [Surface Plane](#surface-plane)
-4. [Features](#5-features)
-5. [Technologies Used](#6-technologies-used)
-6. [Trials & Testing](#7-trials--testing)
-7. [Problem Solving](#8-problem-areas--solutions)
-8. [Code Validation](#9-code-validation)
-9. [Website Deployment](#10-website-deployment)
-10. [Credits & Acknowledgments](#11-credits--acknowledgments)
-11. [Repository Support](#12-repository-support)
+4. [Features](#4-features)
+5. [Technologies Used](#5-technologies-used)
+6. [Trials & Testing](#6-trials--testing)
+7. [Problem Solving](#7-problem-areas--solutions)
+8. [Code Validation](#8-code-validation)
+9. [Website Deployment](#9-website-deployment)
+10. [Credits & Acknowledgments](#10-credits--acknowledgments)
+11. [Repository Support](#11-repository-support)
 
 # 1: Overview/Description
 
@@ -73,6 +73,7 @@ Below are some user stories which reveal how this website is helpful.
 * Difficulty settings beside the start button. The difficulty will determine how long the pattern is.
 * Scoring system that tracks your current score and high-score(saved by cookie)
 * Visual effects when either successful or if failed.
+* Disable inputs when playing combination.
 
 ---
 ## Skeleton Plane
