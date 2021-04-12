@@ -128,6 +128,7 @@ This project uses the following technologies:
 * Google Fonts
 * Github & Git
 * GitPod
+* [Random Number API](http://www.randomnumberapi.com/)
 
 # 6: Trials & Testing
 * 
