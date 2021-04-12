@@ -51,3 +51,16 @@ span {
     border: 1px solid #21209C;
     border-radius: 8px;
 }
+
+.sm-icons {
+    font-size: 32px;
+    color: #1778F2;
+}
+
+.sm-icons.github {
+    color: #fff;
+}
+
+.sm-icons.twitter {
+    color: #009DEB;
+}
