@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@700&family=Zilla+Slab+Highlight:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #191C24;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', sans-serif;
+}
+
+p,
+span {
+    font-family: 'Open Sans', sans-serif;
+    color: #FAFAFA;
+}
+
+.container {
+    max-width: 700px;
+}
+
+.title {
+    font-family: 'Zilla Slab Highlight', cursive;
+    color: #FAFAFA;
+}
+
+.keypad {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.square {
+    float: left;
+    position: relative;
+    width: 30%;
+    padding-bottom: 30%;
+    margin: 1.66%;
+    border: 1px solid #21209C;
+}
+
+.content-area {
+    border: 1px solid #21209C;
+    border-radius: 8px;
+}
