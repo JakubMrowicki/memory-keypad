@@ -117,7 +117,7 @@ kbd {
     font-size: 32px;
     color: #1778F2;
     opacity: 1;
-    transition: 0.5s ease;
+    transition: 0.2s ease;
 }
 
 .sm-icons.github {
@@ -129,5 +129,5 @@ kbd {
 }
 
 .sm-icons:hover {
-    opacity: 0.5;
+    opacity: 0.2;
 }
