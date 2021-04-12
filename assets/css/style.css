@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@700&family=Zilla+Slab+Highlight:wght@700&display=swap');
 
+/*Overrides Start*/
 * {
     margin: 0;
     padding: 0;
@@ -16,11 +17,18 @@ h4,
 h5,
 h6 {
     font-family: 'Roboto', sans-serif;
+    color: #FAFAFA;
 }
 
 p,
-span {
+span,
+small {
     font-family: 'Open Sans', sans-serif;
+    color: #FAFAFA;
+}
+
+.display1 {
+    font-family: 'Zilla Slab Highlight', cursive;
     color: #FAFAFA;
 }
 
@@ -28,11 +36,40 @@ span {
     max-width: 700px;
 }
 
-.title {
-    font-family: 'Zilla Slab Highlight', cursive;
+.custom-select {
+    color: #FAFAFA;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") right .75rem center/8px 10px no-repeat;
+    border: 1px solid #6c757d;
+}
+
+.custom-select option {
+    color: #191C24;
+}
+
+.input-group {
+    max-width: 400px;
+}
+
+.btn-outline-secondary {
     color: #FAFAFA;
 }
 
+.btn-outline-secondary:hover {
+    background-color: #2B9348;
+}
+
+.table {
+    color: #FAFAFA;
+}
+
+kbd {
+    background-color: #191C24;
+    border: 1px solid #6c757d;
+}
+
+/*Overrides End*/
+
+/*Keypad Start*/
 .keypad {
     max-width: 400px;
     margin: 0 auto;
@@ -44,17 +81,43 @@ span {
     width: 30%;
     padding-bottom: 30%;
     margin: 1.66%;
-    border: 1px solid #21209C;
+    border-radius: 10px;
+    border: 3px solid #21209C;
+    /*box-shadow: 0 0 1px #21209C,
+        0 0 2px #21209C,
+        0 0 6px #21209C,
+        0 0 12px #21209C,
+        inset 0 0 1px #21209C,
+        inset 0 0 2px #21209C,
+        inset 0 0 6px #21209C,
+        inset 0 0 12px #21209C;*/
+}
+
+/*neon box-shadow effect credit: https://codepen.io/iamhexcoder/pen/Cpdam*/
+/*Keypad End*/
+
+.big {
+    font-size: 32px;
 }
 
 .content-area {
-    border: 1px solid #21209C;
-    border-radius: 8px;
+    border-radius: 10px;
+    border: 3px solid #336AFF;
+    /*box-shadow: 0 0 1px #336AFF,
+        0 0 2px #336AFF,
+        0 0 6px #336AFF,
+        0 0 12px #336AFF,
+        inset 0 0 1px #336AFF,
+        inset 0 0 2px #336AFF,
+        inset 0 0 6px #336AFF,
+        inset 0 0 12px #336AFF;*/
 }
 
 .sm-icons {
     font-size: 32px;
     color: #1778F2;
+    opacity: 1;
+    transition: 0.5s ease;
 }
 
 .sm-icons.github {
@@ -63,4 +126,8 @@ span {
 
 .sm-icons.twitter {
     color: #009DEB;
+}
+
+.sm-icons:hover {
+    opacity: 0.5;
 }
