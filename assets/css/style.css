@@ -92,6 +92,12 @@ kbd {
     transition: 0.1s;
 }
 
+.lightcomputer {
+    background-color: #bdc3c7;
+    border: 3px solid #336AFF;
+    transition: 0.1s;
+}
+
 .correct {
     background-color: #2B9348;
     border: 3px solid #2B9348;

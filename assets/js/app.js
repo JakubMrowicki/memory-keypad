@@ -20,9 +20,13 @@ let game = {
     },
 
     anim: {
-        light(element) { //Animation When Key Pressed
-            $(element).addClass("light").delay(300).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
-                $(element).removeClass("light").dequeue();
+        light(element, com = false) { //Animation When Key Pressed
+            let className = "light";
+            if (com) {
+                className = "lightcomputer";
+            }
+            $(element).addClass(className).delay(200).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
+                $(element).removeClass(className).dequeue();
             });
         },
 
@@ -35,20 +39,21 @@ let game = {
         },
 
         pattern() { //Animation For Playing Pattern
+            game.var.keypause = true;
             let i = 0;
             let interval = setInterval(() => {
                 if (i == game.var.position - 1) {
                     game.var.keypause = false;
                     clearInterval(interval);
                 }
-                game.anim.light(game.ui.key[game.var.pattern[i] - 1])
+                game.anim.light(game.ui.key[game.var.pattern[i] - 1], true)
                 i++;
             }, 500);
         }
     },
 
     task: {
-        start() { //Start the game using difficulty
+        start() { //Start the game
             game.task.reset();
             game.var.live = true;
             game.task.difficulty(parseInt(game.ui.difficulty.value));
@@ -91,16 +96,34 @@ let game = {
         play() { //Runs on key click, sends clicks for validation
             if (!game.var.live) {
                 game.task.start(); //Start game if click on idle keypad.
+                game.anim.light(this);
             }
             if (!game.var.keypause && game.var.live) {
                 let selected = parseInt($(this).attr('id'));
                 game.var.input.push(selected);
                 game.anim.light(this);
+                game.task.validate();
             }
         },
 
         validate() { //Check player input
-
+            let progress = game.var.input.length;
+            let correct = game.var.pattern.slice(0, progress);
+            if (correct.toString() == game.var.input.toString()) {
+                if (game.var.input.length == game.var.gamelength) {
+                    console.log("You Win!");
+                    game.var.live = false;
+                }
+                if (progress == game.var.position && progress !== game.var.gamelength) {
+                    console.log("Correct");
+                    game.var.position++;
+                    game.var.input = [];
+                    game.anim.pattern();
+                }
+            } else {
+                console.log("You Lose");
+                game.var.live = false;
+            }
         },
 
         pattern(length) { //Get Random Number Of Length Of length from random.org api
