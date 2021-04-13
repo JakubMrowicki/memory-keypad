@@ -30,12 +30,20 @@ let game = {
             });
         },
 
-        win() { //Animation When Game Won
-
+        win(end = false) { //Animation When Game Won
+            let duration = 200;
+            if (end) {
+                duration = 400;
+            }
+            $(game.ui.key).addClass('correct').delay(duration).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
+                $(game.ui.key).removeClass('correct').dequeue();
+            });
         },
 
         loss() { //Animation When Game Lost
-
+            $(game.ui.key).addClass('incorrect').delay(400).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
+                $(game.ui.key).removeClass('incorrect').dequeue();
+            });
         },
 
         pattern() { //Animation For Playing Pattern
@@ -118,16 +126,19 @@ let game = {
             if (correct.toString() == game.var.input.toString()) {
                 if (game.var.input.length == game.var.gamelength) {
                     console.log("You Win!");
+                    game.anim.win(true);
                     game.var.live = false;
                 }
                 if (progress == game.var.position && progress !== game.var.gamelength) {
                     console.log("Correct");
                     game.var.position++;
                     game.var.input = [];
+                    game.anim.win();
                     game.anim.pattern();
                 }
             } else {
                 console.log("You Lose");
+                game.anim.loss();
                 game.var.live = false;
             }
         },
@@ -153,7 +164,7 @@ let game = {
             for (i = 0; i < game.ui.key.length; i++) {
                 $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
                     opacity: 1
-                }, 500, function () {
+                }, 1000, function () {
                     if (i == game.ui.key.length) {
                         for (let j = 0; j < game.ui.key.length; j++) {
                             game.ui.key[j].addEventListener('click', game.task.play);
