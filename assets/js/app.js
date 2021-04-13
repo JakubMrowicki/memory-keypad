@@ -4,7 +4,7 @@ let game = {
         pattern: [],
         input: [],
         difficulty: 2,
-        position: 5,
+        position: 1,
         gamelength: 6,
         live: false,
         keypause: true,
@@ -109,7 +109,17 @@ let game = {
                         game.anim.pattern();
                     });
                 });
+        },
+
+        onload() {
+            for (let i = 0; i < game.ui.key.length; i++) {
+                $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
+                    opacity: 1
+                }, 500);
+                game.anim.light(game.ui.key[i]);
+            }
         }
     },
 
 };
+$(document).ready(game.task.onload());
