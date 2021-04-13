@@ -3,6 +3,7 @@ let game = {
     var: {
         pattern: [],
         input: [],
+        score: 0,
         difficulty: 2,
         position: 1,
         gamelength: 6,
@@ -74,6 +75,7 @@ let game = {
         reset() {
             game.var.pattern = [];
             game.var.input = [];
+            game.var.score = 0;
             game.var.position = 1;
             game.var.gamelength = 6;
             game.var.live = false;
@@ -128,6 +130,8 @@ let game = {
             if (correct.toString() == game.var.input.toString()) {
                 if (game.var.input.length == game.var.gamelength) {
                     console.log("You Win!");
+                    game.var.score++;
+                    game.ui.score.text(game.var.score);
                     game.anim.win(true);
                     game.ui.button.prop('disabled', false);
                     game.ui.difficulty.prop('disabled', false);
@@ -135,6 +139,8 @@ let game = {
                 }
                 if (progress == game.var.position && progress !== game.var.gamelength) {
                     console.log("Correct");
+                    game.var.score++;
+                    game.ui.score.text(game.var.score);
                     game.var.position++;
                     game.var.input = [];
                     game.anim.win();
