@@ -50,6 +50,7 @@ let game = {
     task: {
         start() { //Start the game using difficulty
             game.task.reset();
+            game.var.live = true;
             game.task.difficulty(parseInt(game.ui.difficulty.value));
             game.task.pattern(game.var.gamelength);
         },
@@ -88,7 +89,14 @@ let game = {
         },
 
         play() { //Runs on key click, sends clicks for validation
-
+            if (!game.var.live) {
+                game.task.start(); //Start game if click on idle keypad.
+            }
+            if (!game.var.keypause && game.var.live) {
+                let selected = parseInt($(this).attr('id'));
+                game.var.input.push(selected);
+                game.anim.light(this);
+            }
         },
 
         validate() { //Check player input
@@ -117,6 +125,9 @@ let game = {
                     opacity: 1
                 }, 500);
                 game.anim.light(game.ui.key[i]);
+            }
+            for (let i = 0; i < game.ui.key.length; i++) {
+                game.ui.key[i].addEventListener('click', game.task.play);
             }
         }
     },
