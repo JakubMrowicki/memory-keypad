@@ -4,7 +4,7 @@ let game = {
         pattern: [],
         input: [],
         difficulty: 2,
-        position: 1,
+        position: 5,
         gamelength: 6,
         live: false,
         keypause: true,
@@ -12,7 +12,7 @@ let game = {
 
     ui: {
         keypad: $('.keypad')[0],
-        keys: $('.keypad')[0].children,
+        key: $('.keypad')[0].children,
         button: $('.btn')[0],
         difficulty: $('#difficultySelect')[0],
         score: $('#score'),
@@ -20,8 +20,10 @@ let game = {
     },
 
     anim: {
-        light() { //Animation When Key Pressed
-
+        light(element) { //Animation When Key Pressed
+            $(element).addClass("light").delay(300).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
+                $(element).removeClass("light").dequeue();
+            });
         },
 
         win() { //Animation When Game Won
@@ -33,7 +35,15 @@ let game = {
         },
 
         pattern() { //Animation For Playing Pattern
-
+            let i = 0;
+            let interval = setInterval(() => {
+                if (i == game.var.position - 1) {
+                    game.var.keypause = false;
+                    clearInterval(interval);
+                }
+                game.anim.light(game.ui.key[game.var.pattern[i] - 1])
+                i++;
+            }, 500);
         }
     },
 
@@ -42,12 +52,6 @@ let game = {
             game.task.reset();
             game.task.difficulty(parseInt(game.ui.difficulty.value));
             game.task.pattern(game.var.gamelength);
-            while (game.var.pattern == []) {
-                console.log("Waiting");
-            }
-            then {
-                console.log(game.var.pattern);
-            }
         },
 
         reset() {
@@ -101,6 +105,8 @@ let game = {
                             return el > 0;
                         });
                         game.var.pattern = array;
+
+                        game.anim.pattern();
                     });
                 });
         }

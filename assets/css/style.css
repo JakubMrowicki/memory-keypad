@@ -83,18 +83,26 @@ kbd {
     margin: 1.66%;
     border-radius: 10px;
     border: 3px solid #21209C;
-    /*box-shadow: 0 0 1px #21209C,
-        0 0 2px #21209C,
-        0 0 6px #21209C,
-        0 0 12px #21209C,
-        inset 0 0 1px #21209C,
-        inset 0 0 2px #21209C,
-        inset 0 0 6px #21209C,
-        inset 0 0 12px #21209C;
-    */
 }
 
-/*neon box-shadow effect credit: https://codepen.io/iamhexcoder/pen/Cpdam*/
+.light {
+    background-color: #336AFF;
+    border: 3px solid #336AFF;
+    transition: 0.1s;
+}
+
+.correct {
+    background-color: #2B9348;
+    border: 3px solid #2B9348;
+    transition: 0.1s;
+}
+
+.incorrect {
+    background-color: #D90429;
+    border: 3px solid #D90429;
+    transition: 0.1s;
+}
+
 /*Keypad End*/
 
 .big {
