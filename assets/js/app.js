@@ -149,14 +149,18 @@ let game = {
         },
 
         onload() {
-            for (let i = 0; i < game.ui.key.length; i++) {
+            let i = 0;
+            for (i = 0; i < game.ui.key.length; i++) {
                 $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
                     opacity: 1
-                }, 500);
+                }, 500, function () {
+                    if (i == game.ui.key.length) {
+                        for (let j = 0; j < game.ui.key.length; j++) {
+                            game.ui.key[j].addEventListener('click', game.task.play);
+                        }
+                    }
+                });
                 game.anim.light(game.ui.key[i]);
-            }
-            for (let i = 0; i < game.ui.key.length; i++) {
-                game.ui.key[i].addEventListener('click', game.task.play);
             }
         }
     },
