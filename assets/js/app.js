@@ -2,31 +2,16 @@ let memoryKeypad = {
     computedPattern: [],
 
     getComputedPattern(length) {
-        let promise = new Promise(function (resolve, reject) {
-            let req = new XMLHttpRequest();
-            req.open("GET", 'https://www.random.org/strings/?num=1&len=' + length + '&digits=on&upperalpha=off&loweralpha=off&unique=on&format=plain&rnd=new');
-            req.onload = function () {
-                if (req.status == 200) {
-                    resolve(req.response);
-                } else {
-                    reject("There is an Error!");
-                }
-            };
-            req.send();
-        });
-        return promise;
+        let request = new Request('https://www.random.org/integers/?num=' + length + '&min=1&max=9&col=1&base=10&format=plain&rnd=new');
+        fetch(request)
+            .then(function (response) {
+                return response.text().then(function (text) {
+                    let numberArray = Array.from(String(text), Number);
+                    let filtered = numberArray.filter(function (el) { //Credit: Christian C. Salvadó https://stackoverflow.com/a/281335
+                        return el > 0;
+                    });
+                    memoryKeypad.computedPattern = filtered;
+                })
+            });
     },
-
-    setComputedPattern(length) {
-        this.getComputedPattern(length).then(value => {
-            let numbers = value;
-            if (value.length > length) {
-                numbers = numbers.slice(0, length);
-            }
-            let numbersArray = Array.from(String(numbers), Number);
-            this.computedPattern = numbersArray;
-        });
-    }
 };
-memoryKeypad.setComputedPattern(10);
-console.log(memoryKeypad.computedPattern);
