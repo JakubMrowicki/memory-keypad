@@ -5,6 +5,7 @@ let game = {
         input: [],
         difficulty: 2,
         position: 1,
+        gamelength: 6,
         live: false,
         keypause: true,
     },
@@ -38,7 +39,30 @@ let game = {
 
     task: {
         start(difficulty) { //Start the game using difficulty
+            game.task.difficulty(parseInt(game.ui.difficulty.value));
+            game.task.pattern(game.gamelength);
+        },
 
+        difficulty(difficulty) {
+            switch (difficulty) {
+                case 1:
+                    game.var.gamelength = 4;
+                    break;
+                case 2:
+                    game.var.gamelength = 6;
+                    break;
+                case 3:
+                    game.var.gamelength = 8;
+                    break;
+                case 4:
+                    game.var.gamelength = 10;
+                    break;
+                case 5:
+                    game.var.gamelength = 14;
+                    break;
+                default:
+                    game.var.gamelength = 6;
+            }
         },
 
         play() { //Runs on key click, sends clicks for validation
