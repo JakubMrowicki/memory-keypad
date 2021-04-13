@@ -38,9 +38,27 @@ let game = {
     },
 
     task: {
-        start(difficulty) { //Start the game using difficulty
+        start() { //Start the game using difficulty
+            game.task.reset();
             game.task.difficulty(parseInt(game.ui.difficulty.value));
-            game.task.pattern(game.gamelength);
+            game.task.pattern(game.var.gamelength);
+            while (game.var.pattern == []) {
+                console.log("Waiting");
+            }
+            then {
+                console.log(game.var.pattern);
+            }
+        },
+
+        reset() {
+            game.var.pattern = [];
+            game.var.input = [];
+            game.var.difficulty = 2;
+            game.var.position = 1;
+            game.var.gamelength = 6;
+            game.var.live = false;
+            game.var.keypause = true;
+            game.ui.score.text("0");
         },
 
         difficulty(difficulty) {
