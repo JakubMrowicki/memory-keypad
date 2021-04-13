@@ -58,12 +58,12 @@ let game = {
             game.var.live = true;
             game.task.difficulty(parseInt(game.ui.difficulty.value));
             game.task.pattern(game.var.gamelength);
+            console.log("You are playing on: " + game.var.difficulty);
         },
 
         reset() {
             game.var.pattern = [];
             game.var.input = [];
-            game.var.difficulty = 2;
             game.var.position = 1;
             game.var.gamelength = 6;
             game.var.live = false;
@@ -74,21 +74,27 @@ let game = {
         difficulty(difficulty) {
             switch (difficulty) {
                 case 1:
+                    game.var.difficulty = 1;
                     game.var.gamelength = 4;
                     break;
                 case 2:
+                    game.var.difficulty = 2;
                     game.var.gamelength = 6;
                     break;
                 case 3:
+                    game.var.difficulty = 3;
                     game.var.gamelength = 8;
                     break;
                 case 4:
+                    game.var.difficulty = 4;
                     game.var.gamelength = 10;
                     break;
                 case 5:
+                    game.var.difficulty = 5;
                     game.var.gamelength = 14;
                     break;
                 default:
+                    game.var.difficulty = 2;
                     game.var.gamelength = 6;
             }
         },
