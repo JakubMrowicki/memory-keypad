@@ -13,8 +13,8 @@ let game = {
     ui: {
         keypad: $('.keypad')[0],
         key: $('.keypad')[0].children,
-        button: $('.btn')[0],
-        difficulty: $('#difficultySelect')[0],
+        button: $('.btn'),
+        difficulty: $('#difficultySelect'),
         score: $('#score'),
         highscore: $('#highscore'),
     },
@@ -64,8 +64,10 @@ let game = {
         start() { //Start the game
             game.task.reset();
             game.var.live = true;
-            game.task.difficulty(parseInt(game.ui.difficulty.value));
+            game.task.difficulty(parseInt(game.ui.difficulty[0].value));
             game.task.pattern(game.var.gamelength);
+            game.ui.button.prop('disabled', true);
+            game.ui.difficulty.prop('disabled', true);
             console.log("You are playing on: " + game.var.difficulty);
         },
 
@@ -127,6 +129,8 @@ let game = {
                 if (game.var.input.length == game.var.gamelength) {
                     console.log("You Win!");
                     game.anim.win(true);
+                    game.ui.button.prop('disabled', false);
+                    game.ui.difficulty.prop('disabled', false);
                     game.var.live = false;
                 }
                 if (progress == game.var.position && progress !== game.var.gamelength) {
@@ -139,6 +143,8 @@ let game = {
             } else {
                 console.log("You Lose");
                 game.anim.loss();
+                game.ui.button.prop('disabled', false);
+                game.ui.difficulty.prop('disabled', false);
                 game.var.live = false;
             }
         },
