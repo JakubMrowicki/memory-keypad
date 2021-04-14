@@ -5,7 +5,7 @@ let game = {
         input: [],
         score: 0,
         difficulty: 1,
-        position: 1,
+        position: 2,
         gamelength: 6,
         live: false,
         keypause: true,
@@ -39,7 +39,7 @@ let game = {
             $(game.ui.key).addClass('correct').delay(duration).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
                 $(game.ui.key).removeClass('correct').dequeue();
             });
-            game.var.score++;
+            game.var.score += 100 * game.var.position;
             game.ui.score.text(game.var.score);
             if (game.var.score > parseInt(game.ui.highscore.text())) {
                 game.ui.highscore.text(game.var.score);
@@ -83,7 +83,7 @@ let game = {
             game.var.pattern = [];
             game.var.input = [];
             game.var.score = 0;
-            game.var.position = 1;
+            game.var.position = 2;
             game.var.gamelength = 6;
             game.var.live = false;
             game.var.keypause = true;
@@ -137,7 +137,6 @@ let game = {
             let correct = game.var.pattern.slice(0, progress);
             if (correct.toString() == game.var.input.toString()) {
                 if (game.var.input.length == game.var.gamelength) {
-                    console.log("You Win!");
                     game.anim.win(true);
                     game.ui.button.prop('disabled', false);
                     game.ui.difficulty.prop('disabled', false);
@@ -146,14 +145,12 @@ let game = {
                     $(game.ui.key).removeClass('on');
                 }
                 if (progress == game.var.position && progress !== game.var.gamelength) {
-                    console.log("Correct");
+                    game.anim.win();
                     game.var.position++;
                     game.var.input = [];
-                    game.anim.win();
                     game.anim.pattern();
                 }
             } else {
-                console.log("You Lose");
                 game.anim.loss();
                 game.ui.button.prop('disabled', false);
                 game.ui.difficulty.prop('disabled', false);
