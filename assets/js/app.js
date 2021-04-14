@@ -73,6 +73,7 @@ let game = {
             game.task.difficulty(parseInt(game.ui.difficulty[0].value));
             game.task.pattern(game.var.gamelength);
             game.ui.button.prop('disabled', true);
+            game.ui.button.text("Game Running");
             game.ui.difficulty.prop('disabled', true);
             console.log("You are playing on: " + game.var.difficulty);
         },
@@ -86,6 +87,7 @@ let game = {
             game.var.live = false;
             game.var.keypause = true;
             game.ui.score.text("0");
+            game.ui.button.text("Start Game");
         },
 
         difficulty(difficulty) {
@@ -138,6 +140,7 @@ let game = {
                     game.anim.win(true);
                     game.ui.button.prop('disabled', false);
                     game.ui.difficulty.prop('disabled', false);
+                    game.ui.button.text("Start Game");
                     game.var.live = false;
                 }
                 if (progress == game.var.position && progress !== game.var.gamelength) {
@@ -152,6 +155,7 @@ let game = {
                 game.anim.loss();
                 game.ui.button.prop('disabled', false);
                 game.ui.difficulty.prop('disabled', false);
+                game.ui.button.text("Start Game");
                 game.var.live = false;
             }
         },
@@ -172,7 +176,7 @@ let game = {
                 });
         },
 
-        onload() {
+        init() {
             let i = 0;
             for (i = 0; i < game.ui.key.length; i++) {
                 $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
@@ -190,4 +194,4 @@ let game = {
     },
 
 };
-$(document).ready(game.task.onload());
+$(document).ready(game.task.init());
