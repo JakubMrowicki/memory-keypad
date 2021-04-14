@@ -181,9 +181,9 @@ let game = {
             let saved_difficulty = game.task.getCookie('last_dif');
             if (saved_difficulty > 0) {
                 game.ui.difficulty[0].value = saved_difficulty;
-                if (saved_score > 0) {
-                    game.ui.highscore.text(saved_score);
-                }
+            }
+            if (saved_score > 0) {
+                game.ui.highscore.text(saved_score);
             }
             game.ui.difficulty[0].addEventListener('change', function () {
                 game.task.setCookie('last_dif', game.ui.difficulty[0].value, 14);
