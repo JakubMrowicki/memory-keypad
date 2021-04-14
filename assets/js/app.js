@@ -4,7 +4,7 @@ let game = {
         pattern: [],
         input: [],
         score: 0,
-        difficulty: 2,
+        difficulty: 1,
         position: 1,
         gamelength: 6,
         live: false,
@@ -43,6 +43,7 @@ let game = {
             game.ui.score.text(game.var.score);
             if (game.var.score > parseInt(game.ui.highscore.text())) {
                 game.ui.highscore.text(game.var.score);
+                game.task.setCookie('highscore', game.var.score, 14);
             }
         },
 
@@ -177,6 +178,10 @@ let game = {
         },
 
         init() {
+            let saved = game.task.getCookie('highscore');
+            if (saved > 0) {
+                game.ui.highscore.text(saved);
+            }
             let i = 0;
             for (i = 0; i < game.ui.key.length; i++) {
                 $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
@@ -190,6 +195,33 @@ let game = {
                 });
                 game.anim.light(game.ui.key[i]);
             }
+        },
+
+        /* Thanks to Mandeep Janjua for the below cookie functions https://stackoverflow.com/a/24103596 */
+
+        setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        },
+
+        getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        },
+
+        eraseCookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
     },
 
