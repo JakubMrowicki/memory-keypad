@@ -94,23 +94,23 @@ let game = {
             switch (difficulty) {
                 case 1:
                     game.var.difficulty = 1;
-                    game.var.gamelength = 4;
+                    game.var.gamelength = 6;
                     break;
                 case 2:
                     game.var.difficulty = 2;
-                    game.var.gamelength = 6;
+                    game.var.gamelength = 8;
                     break;
                 case 3:
                     game.var.difficulty = 3;
-                    game.var.gamelength = 8;
+                    game.var.gamelength = 10;
                     break;
                 case 4:
                     game.var.difficulty = 4;
-                    game.var.gamelength = 10;
+                    game.var.gamelength = 12;
                     break;
                 case 5:
                     game.var.difficulty = 5;
-                    game.var.gamelength = 14;
+                    game.var.gamelength = 20;
                     break;
                 default:
                     game.var.difficulty = 2;
