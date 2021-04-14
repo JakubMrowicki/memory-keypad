@@ -39,6 +39,11 @@ let game = {
             $(game.ui.key).addClass('correct').delay(duration).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
                 $(game.ui.key).removeClass('correct').dequeue();
             });
+            game.var.score++;
+            game.ui.score.text(game.var.score);
+            if (game.var.score > parseInt(game.ui.highscore.text())) {
+                game.ui.highscore.text(game.var.score);
+            }
         },
 
         loss() { //Animation When Game Lost
@@ -55,7 +60,7 @@ let game = {
                     game.var.keypause = false;
                     clearInterval(interval);
                 }
-                game.anim.light(game.ui.key[game.var.pattern[i] - 1], true)
+                game.anim.light(game.ui.key[game.var.pattern[i] - 1], true);
                 i++;
             }, 500);
         }
@@ -130,8 +135,6 @@ let game = {
             if (correct.toString() == game.var.input.toString()) {
                 if (game.var.input.length == game.var.gamelength) {
                     console.log("You Win!");
-                    game.var.score++;
-                    game.ui.score.text(game.var.score);
                     game.anim.win(true);
                     game.ui.button.prop('disabled', false);
                     game.ui.difficulty.prop('disabled', false);
@@ -139,8 +142,6 @@ let game = {
                 }
                 if (progress == game.var.position && progress !== game.var.gamelength) {
                     console.log("Correct");
-                    game.var.score++;
-                    game.ui.score.text(game.var.score);
                     game.var.position++;
                     game.var.input = [];
                     game.anim.win();
