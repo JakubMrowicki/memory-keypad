@@ -76,7 +76,6 @@ let game = {
             game.ui.button.prop('disabled', true);
             game.ui.button.text("Game Running");
             game.ui.difficulty.prop('disabled', true);
-            console.log("You are playing on: " + game.var.difficulty);
         },
 
         reset() {
@@ -178,10 +177,17 @@ let game = {
         },
 
         init() {
-            let saved = game.task.getCookie('highscore');
-            if (saved > 0) {
-                game.ui.highscore.text(saved);
+            let saved_score = game.task.getCookie('highscore');
+            let saved_difficulty = game.task.getCookie('last_dif');
+            if (saved_difficulty > 0) {
+                game.ui.difficulty[0].value = saved_difficulty;
+                if (saved_score > 0) {
+                    game.ui.highscore.text(saved_score);
+                }
             }
+            game.ui.difficulty[0].addEventListener('change', function () {
+                game.task.setCookie('last_dif', game.ui.difficulty[0].value, 14);
+            });
             let i = 0;
             for (i = 0; i < game.ui.key.length; i++) {
                 $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
@@ -195,9 +201,10 @@ let game = {
                 });
                 game.anim.light(game.ui.key[i]);
             }
+
         },
 
-        /* Thanks to Mandeep Janjua for the below cookie functions https://stackoverflow.com/a/24103596 */
+        /* Thanks to Mandeep Janjua & quirksmode.org for the below cookie functions https://stackoverflow.com/a/24103596 https://www.quirksmode.org/js/cookies.html */
 
         setCookie(name, value, days) {
             var expires = "";
