@@ -71,6 +71,7 @@ let game = {
         start() { //Start the game
             game.task.reset();
             game.var.live = true;
+            $(game.ui.key).addClass('on');
             game.task.difficulty(parseInt(game.ui.difficulty[0].value));
             game.task.pattern(game.var.gamelength);
             game.ui.button.prop('disabled', true);
@@ -142,6 +143,7 @@ let game = {
                     game.ui.difficulty.prop('disabled', false);
                     game.ui.button.text("Start Game");
                     game.var.live = false;
+                    $(game.ui.key).removeClass('on');
                 }
                 if (progress == game.var.position && progress !== game.var.gamelength) {
                     console.log("Correct");
@@ -157,6 +159,7 @@ let game = {
                 game.ui.difficulty.prop('disabled', false);
                 game.ui.button.text("Start Game");
                 game.var.live = false;
+                $(game.ui.key).removeClass('on');
             }
         },
 
