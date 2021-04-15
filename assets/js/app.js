@@ -50,6 +50,11 @@ let game = {
         loss() { //Animation When Game Lost
             $(game.ui.key).addClass('incorrect').delay(400).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
                 $(game.ui.key).removeClass('incorrect').dequeue();
+                game.ui.button.prop('disabled', false);
+                game.ui.difficulty.prop('disabled', false);
+                game.ui.button.text("Start Game");
+                game.var.live = false;
+                $(game.ui.key).removeClass('on');
             });
         },
 
@@ -152,11 +157,6 @@ let game = {
                 }
             } else {
                 game.anim.loss();
-                game.ui.button.prop('disabled', false);
-                game.ui.difficulty.prop('disabled', false);
-                game.ui.button.text("Start Game");
-                game.var.live = false;
-                $(game.ui.key).removeClass('on');
             }
         },
 
@@ -195,7 +195,7 @@ let game = {
                 }, 1000, function () {
                     if (i == game.ui.key.length) {
                         for (let j = 0; j < game.ui.key.length; j++) {
-                            game.ui.key[j].addEventListener('click', game.task.play);
+                            game.ui.key[j].addEventListener('mousedown', game.task.play);
                         }
                     }
                 });
