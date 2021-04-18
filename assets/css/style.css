@@ -144,6 +144,14 @@ kbd {
     transition: 0.1s;
 }
 
+#stage-box {
+    display: none;
+}
+
+#lives-box {
+    display: none;
+}
+
 /*Keypad End*/
 
 .big {

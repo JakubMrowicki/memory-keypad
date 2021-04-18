@@ -41,7 +41,7 @@
     </header>
 
     <main class="container">
-        <div class="row">
+        <div id="game-control" class="row">
             <div class="col-12">
                 <div class="input-group my-3 mx-auto">
                     <div class="input-group-prepend">
@@ -64,31 +64,27 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-6 my-3">
+            <div id="stage-box" class="col-6 my-3">
                 <div class="content-area">
-                    <div class="row">
-                        <div class="col">
-                            <span id="score" class="d-block big text-center">0</span>
-                            <span class="d-block pb-2 text-center">Score</span>
-                        </div>
-                    </div>
-
+                    <span class="d-block big text-center">
+                        <span id="stage">0</span>/<span id="max-stage">0</span>
+                    </span>
+                    <span class="d-block pb-2 text-center">Stage</span>
                 </div>
             </div>
-            <div class="col-md-4 col-6 my-3">
+            <div id="lives-box" class="col-6 my-3">
                 <div class="content-area">
-                    <div class="row">
-                        <div class="col">
-                            <span class="d-block big text-center">
-                                <span id="stage">0</span>/<span id="max-stage">0</span>
-                            </span>
-                            <span class="d-block pb-2 text-center">Stage</span>
-                        </div>
-                    </div>
-
+                    <span id="lives" class="d-block big text-center">0</span>
+                    <span class="d-block pb-2 text-center">Lives Remaining</span>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12 my-3">
+            <div class="col-6 my-3">
+                <div class="content-area">
+                    <span id="score" class="d-block big text-center">0</span>
+                    <span class="d-block pb-2 text-center">Score</span>
+                </div>
+            </div>
+            <div class="col-6 my-3">
                 <div class="content-area">
                     <span id="highscore" class="d-block big text-center">0</span>
                     <span class="d-block pb-2 text-center">Personal Best</span>

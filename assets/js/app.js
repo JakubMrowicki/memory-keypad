@@ -3,6 +3,7 @@ let game = {
     var: {
         pattern: [],
         input: [],
+        lives: 1,
         score: 0,
         difficulty: 1,
         position: 2,
@@ -14,11 +15,12 @@ let game = {
     ui: {
         keypad: $('.keypad')[0],
         key: $('.keypad')[0].children,
+        gamecontrol: $('#game-control'),
         button: $('#start-button'),
         difficulty: $('#difficultySelect'),
+        lives: $('#lives'),
         score: $('#score'),
         highscore: $('#highscore'),
-        stagearea: $('#stage-area'),
         stage: $('#stage'),
         maxstage: $('#max-stage')
     },
@@ -29,9 +31,10 @@ let game = {
             if (com) {
                 className = "lightcomputer";
             }
-            $(element).addClass(className).delay(200).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
-                $(element).removeClass(className).dequeue();
-            });
+            $(element).addClass(className);
+            setTimeout(function () {
+                $(element).removeClass(className);
+            }, 220);
         },
 
         win(end = false) { //Animation When Game Won
@@ -40,6 +43,9 @@ let game = {
                 duration = 400;
                 game.ui.stage.text('0');
                 game.ui.maxstage.text('0');
+                game.ui.gamecontrol.slideDown('fast');
+                $('#stage-box').slideUp('fast');
+                $('#lives-box').slideUp('fast');
             }
             $(game.ui.key).addClass('correct').delay(duration).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
                 $(game.ui.key).removeClass('correct').dequeue();
@@ -52,17 +58,28 @@ let game = {
             }
         },
 
-        loss() { //Animation When Game Lost
-            $(game.ui.key).addClass('incorrect').delay(400).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
-                $(game.ui.key).removeClass('incorrect').dequeue();
-                game.ui.button.prop('disabled', false);
-                game.ui.difficulty.prop('disabled', false);
-                game.ui.button.text("Start Game");
-                game.var.live = false;
-                $(game.ui.key).removeClass('on');
-                game.ui.stage.text('0');
-                game.ui.maxstage.text('0');
-            });
+        loss(end = true) { //Animation When Game Lost
+            if (end) {
+                $(game.ui.key).addClass('incorrect').delay(400).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
+                    $(game.ui.key).removeClass('incorrect').dequeue();
+                    game.ui.button.prop('disabled', false);
+                    game.ui.difficulty.prop('disabled', false);
+                    game.ui.button.text("Start Game");
+                    game.var.live = false;
+                    $(game.ui.key).removeClass('on');
+                    game.ui.stage.text('0');
+                    game.ui.maxstage.text('0');
+                    game.ui.gamecontrol.slideDown('fast');
+                    $('#stage-box').slideUp('fast');
+                    $('#lives-box').slideUp('fast');
+                });
+            } else {
+                $(game.ui.key).addClass('incorrect').delay(400).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
+                    $(game.ui.key).removeClass('incorrect').dequeue();
+                    game.var.input = [];
+                    game.anim.pattern();
+                });
+            }
         },
 
         pattern() { //Animation For Playing Pattern
@@ -82,10 +99,12 @@ let game = {
 
     task: {
         start() { //Start the game
+            game.ui.gamecontrol.slideUp('fast');
             game.task.reset();
             game.var.live = true;
             $(game.ui.key).addClass('on');
             game.task.difficulty(parseInt(game.ui.difficulty[0].value));
+            game.ui.lives.text(game.var.lives);
             game.task.pattern(game.var.gamelength);
             game.ui.button.prop('disabled', true);
             game.ui.button.text("Game Running");
@@ -109,22 +128,27 @@ let game = {
                 case 1:
                     game.var.difficulty = 1;
                     game.var.gamelength = 6;
+                    game.var.lives = 1;
                     break;
                 case 2:
                     game.var.difficulty = 2;
                     game.var.gamelength = 8;
+                    game.var.lives = 1;
                     break;
                 case 3:
                     game.var.difficulty = 3;
                     game.var.gamelength = 10;
+                    game.var.lives = 2;
                     break;
                 case 4:
                     game.var.difficulty = 4;
                     game.var.gamelength = 12;
+                    game.var.lives = 2;
                     break;
                 case 5:
                     game.var.difficulty = 5;
                     game.var.gamelength = 20;
+                    game.var.lives = 2;
                     break;
                 default:
                     game.var.difficulty = 2;
@@ -135,7 +159,6 @@ let game = {
         play() { //Runs on key click, sends clicks for validation
             if (!game.var.live) {
                 game.task.start(); //Start game if click on idle keypad.
-                game.anim.light(this);
             }
             if (!game.var.keypause && game.var.live) {
                 let selected = parseInt($(this).attr('id'));
@@ -164,7 +187,19 @@ let game = {
                     game.anim.pattern();
                 }
             } else {
-                game.anim.loss();
+                if (game.var.lives > 0) {
+                    game.var.keypause = true;
+                    game.var.lives--;
+                    game.ui.lives.text(game.var.lives);
+                    game.var.score -= 50 * game.var.position;
+                    if (game.var.score < 0) {
+                        game.var.score = 0;
+                    }
+                    game.ui.score.text(game.var.score);
+                    game.anim.loss(false);
+                } else {
+                    game.anim.loss();
+                }
             }
         },
 
@@ -179,6 +214,8 @@ let game = {
                         });
                         game.var.pattern = array;
                         game.ui.maxstage.text(length - 1);
+                        $('#stage-box').slideDown('fast');
+                        $('#lives-box').slideDown('fast');
                         game.anim.pattern();
                     });
                 });
