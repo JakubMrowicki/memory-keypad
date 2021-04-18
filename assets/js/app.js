@@ -273,7 +273,7 @@ let game = {
         },
 
         easteregg() {
-            let option = '<option value="5">Impossible Difficulty</option>';
+            let option = `<option value="5">Impossible Difficulty</option>`;
             $(game.ui.difficulty[0]).append(option);
 
             let tablerow = `<tr>
@@ -281,7 +281,7 @@ let game = {
                                     <td>50</td>
                                     <td>127400</td>
                                     <td>5</td>
-                                </tr>`
+                                </tr>`;
             $('#tablebody').append(tablerow);
         },
 
