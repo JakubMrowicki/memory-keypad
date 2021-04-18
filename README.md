@@ -1,5 +1,6 @@
 # Memory Keypad - A Memory Mini-Game
 
+![AmIResponsive](https://i.imgur.com/QQIA4EF.png)
 
 [View Project on GitHub Pages](https://jakubmrowicki.github.io/memory-keypad/)
 
