@@ -18,6 +18,9 @@ let game = {
         difficulty: $('#difficultySelect'),
         score: $('#score'),
         highscore: $('#highscore'),
+        stagearea: $('#stage-area'),
+        stage: $('#stage'),
+        maxstage: $('#max-stage')
     },
 
     anim: {
@@ -35,6 +38,8 @@ let game = {
             let duration = 200;
             if (end) {
                 duration = 400;
+                game.ui.stage.text('0');
+                game.ui.maxstage.text('0');
             }
             $(game.ui.key).addClass('correct').delay(duration).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
                 $(game.ui.key).removeClass('correct').dequeue();
@@ -55,11 +60,14 @@ let game = {
                 game.ui.button.text("Start Game");
                 game.var.live = false;
                 $(game.ui.key).removeClass('on');
+                game.ui.stage.text('0');
+                game.ui.maxstage.text('0');
             });
         },
 
         pattern() { //Animation For Playing Pattern
             game.var.keypause = true;
+            game.ui.stage.text(game.var.position - 1);
             let i = 0;
             let interval = setInterval(() => {
                 if (i == game.var.position - 1) {
@@ -170,7 +178,7 @@ let game = {
                             return el > 0;
                         });
                         game.var.pattern = array;
-
+                        game.ui.maxstage.text(length - 1);
                         game.anim.pattern();
                     });
                 });
