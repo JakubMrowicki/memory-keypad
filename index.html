@@ -19,7 +19,8 @@
     <link rel="icon" sizes="32x32" href="assets/images/favicon-32x32.png" type="image/png">
 </head>
 
-<body>
+<body class="noselect">
+    <!--Game Area Start-->
     <header class="container">
         <h1 class="display1 text-center mt-3">Memory Keypad</h1>
         <small class="d-block text-center">A memory mini-game</small>
@@ -39,7 +40,9 @@
             </div>
         </div>
     </header>
+    <!--Game Area End-->
 
+    <!--Game Controls & Status Start-->
     <main class="container">
         <div id="game-control" class="row">
             <div class="col-12">
@@ -91,6 +94,8 @@
                 </div>
             </div>
         </div>
+
+        <!--Modal Start-->
         <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="info-modal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -113,41 +118,73 @@
                             keys.
                             The game will get progressively more difficult with each turn.</p>
                         <h4>Difficulty Settings</h4>
-                        <p>Each difficulty will change the length of the keypad pattern. See table below.</p>
+                        <p>Each difficulty will change the length of the keypad pattern as well as your life count. See
+                            table below.</p>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>Difficulty Level</th>
                                     <th>Pattern Length</th>
+                                    <th>Max Score</th>
+                                    <th>Lives</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Easy</td>
                                     <td>6</td>
+                                    <td>2000</td>
+                                    <td>1</td>
                                 </tr>
                                 <tr>
                                     <td>Normal</td>
                                     <td>8</td>
+                                    <td>3500</td>
+                                    <td>1</td>
                                 </tr>
                                 <tr>
                                     <td>Hard</td>
                                     <td>10</td>
+                                    <td>5400</td>
+                                    <td>2</td>
                                 </tr>
                                 <tr>
                                     <td>Expert</td>
                                     <td>12</td>
+                                    <td>7700</td>
+                                    <td>2</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">I got it</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">I got it</button>
                     </div>
                 </div>
             </div>
         </div>
+        <!--Modal End-->
+
+        <!--Toast Start-->
+        <div class="position-fixed bottom-0 right-0 p-3"
+            style="bottom: 0; left: 50%; position: fixed; transform: translate(-50%, 0px); z-index: 9999;"
+            onclick="game.notify.hidetoast();">
+            <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+                data-delay="8000">
+                <div class="toast-header">
+                    <strong id="toast-title" class="mr-auto">Memory Keypad</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span style="color:darkslategray;" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body"></div>
+            </div>
+        </div>
+        <!--Toast End-->
+
     </main>
+    <!--Game Controls & Status End-->
+
 
     <footer class="container">
         <div class="row">

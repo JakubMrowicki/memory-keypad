@@ -46,6 +46,9 @@ let game = {
                 game.ui.gamecontrol.slideDown('fast');
                 $('#stage-box').slideUp('fast');
                 $('#lives-box').slideUp('fast');
+                if (game.var.score > parseInt(game.ui.highscore.text())) {
+                    game.notify.toast('New Personal Best!', 'Well done, your new high score is ' + game.var.score);
+                }
             }
             $(game.ui.key).addClass('correct').delay(duration).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
                 $(game.ui.key).removeClass('correct').dequeue();
@@ -94,6 +97,18 @@ let game = {
                 game.anim.light(game.ui.key[game.var.pattern[i] - 1], true);
                 i++;
             }, 500);
+        }
+    },
+
+    notify: {
+        toast(title, message) {
+            $('#toast-title').text(title);
+            $('.toast-body').text(message);
+            $('.toast').toast('show');
+        },
+
+        hidetoast() {
+            $('.toast').toast('hide');
         }
     },
 
