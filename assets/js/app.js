@@ -10,6 +10,8 @@ let game = {
         gamelength: 6,
         live: false,
         keypause: true,
+        newhighscore: false,
+        easteregg: false
     },
 
     ui: {
@@ -39,6 +41,13 @@ let game = {
 
         win(end = false) { //Animation When Game Won
             let duration = 200;
+            game.var.score += 100 * game.var.position;
+            game.ui.score.text(game.var.score);
+            if (game.var.score > parseInt(game.ui.highscore.text())) {
+                game.var.newhighscore = true;
+                game.ui.highscore.text(game.var.score);
+                game.task.setCookie('highscore', game.var.score, 14);
+            }
             if (end) {
                 duration = 400;
                 game.ui.stage.text('0');
@@ -46,19 +55,21 @@ let game = {
                 game.ui.gamecontrol.slideDown('fast');
                 $('#stage-box').slideUp('fast');
                 $('#lives-box').slideUp('fast');
-                if (game.var.score > parseInt(game.ui.highscore.text())) {
-                    game.notify.toast('New Personal Best!', 'Well done, your new high score is ' + game.var.score);
+                if (game.var.newhighscore) {
+                    if (parseInt(game.ui.highscore.text()) >= 7700 && !game.var.easteregg) {
+                        game.notify.toast('You unlocked the easter egg!', 'You beat the game and unlocked the Impossible Difficulty!');
+                        game.var.easteregg = true;
+                        game.task.setCookie('easteregg', true, 365);
+                    } else {
+                        game.notify.toast('Nice!', 'You got a score of ' + game.var.score + ' which is your new personal best!');
+                    }
+                } else {
+                    game.notify.toast('Good going!', 'You got a score of ' + game.var.score + '.');
                 }
             }
             $(game.ui.key).addClass('correct').delay(duration).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
                 $(game.ui.key).removeClass('correct').dequeue();
             });
-            game.var.score += 100 * game.var.position;
-            game.ui.score.text(game.var.score);
-            if (game.var.score > parseInt(game.ui.highscore.text())) {
-                game.ui.highscore.text(game.var.score);
-                game.task.setCookie('highscore', game.var.score, 14);
-            }
         },
 
         loss(end = true) { //Animation When Game Lost
@@ -107,8 +118,14 @@ let game = {
             $('.toast').toast('show');
         },
 
-        hidetoast() {
-            $('.toast').toast('hide');
+        hidetoast(delay) {
+            if (delay) {
+                setTimeout(() => {
+                    $('.toast').toast('hide');
+                }, delay);
+            } else {
+                $('.toast').toast('hide');
+            }
         }
     },
 
@@ -132,6 +149,7 @@ let game = {
             game.var.score = 0;
             game.var.position = 2;
             game.var.gamelength = 6;
+            game.var.newhighscore = false;
             game.var.live = false;
             game.var.keypause = true;
             game.ui.score.text("0");
@@ -162,8 +180,8 @@ let game = {
                     break;
                 case 5:
                     game.var.difficulty = 5;
-                    game.var.gamelength = 20;
-                    game.var.lives = 2;
+                    game.var.gamelength = 50;
+                    game.var.lives = 5;
                     break;
                 default:
                     game.var.difficulty = 2;
@@ -219,10 +237,11 @@ let game = {
         },
 
         pattern(length) { //Get Random Number Of Length Of length from random.org api
+            game.notify.toast('Please Wait', 'Connecting to Random.org');
             let request = new Request('https://www.random.org/integers/?num=' + length + '&min=1&max=9&col=1&base=10&format=plain&rnd=new');
             fetch(request)
                 .then(function (response) {
-                    return response.text().then(function (text) {
+                    response.text().then(function (text) {
                         let array = Array.from(String(text), Number);
                         array = array.filter(function (el) { //Credit: Christian C. Salvadó https://stackoverflow.com/a/281335
                             return el > 0;
@@ -231,22 +250,90 @@ let game = {
                         game.ui.maxstage.text(length - 1);
                         $('#stage-box').slideDown('fast');
                         $('#lives-box').slideDown('fast');
+                        game.notify.hidetoast();
                         game.anim.pattern();
                     });
+                })
+                .catch(error => {
+                    game.notify.toast('Connection Failed', 'Could not connect to Random.org. Generating game pattern locally.');
+                    game.notify.hidetoast(5000);
+                    console.log(error);
+                    let randomNumArray = [];
+                    for (let i = 0; i < length; i++) {
+                        let num = Math.floor((Math.random() * 9) + 1);
+                        randomNumArray.push(num);
+                    }
+                    game.var.pattern = randomNumArray;
+                    game.ui.maxstage.text(length - 1);
+                    $('#stage-box').slideDown('fast');
+                    $('#lives-box').slideDown('fast');
+                    game.anim.pattern();
                 });
         },
 
+        easteregg() {
+            let option = '<option value="5">Impossible Difficulty</option>';
+            $(game.ui.difficulty[0]).append(option);
+
+            let tablerow = `<tr>
+                                    <td>Impossible</td>
+                                    <td>50</td>
+                                    <td>127400</td>
+                                    <td>5</td>
+                                </tr>`
+            $('#tablebody').append(tablerow);
+        },
+
         init() {
-            let saved_score = game.task.getCookie('highscore');
-            let saved_difficulty = game.task.getCookie('last_dif');
-            if (saved_difficulty > 0) {
-                game.ui.difficulty[0].value = saved_difficulty;
+            if (game.task.getCookie('last_dif') > 0) {
+                game.ui.difficulty[0].value = game.task.getCookie('last_dif');
             }
-            if (saved_score > 0) {
-                game.ui.highscore.text(saved_score);
+            if (game.task.getCookie('highscore') > 0) {
+                game.ui.highscore.text(game.task.getCookie('highscore'));
+            }
+            if (game.task.getCookie('easteregg') === 'true') {
+                game.task.easteregg();
             }
             game.ui.difficulty[0].addEventListener('change', function () {
                 game.task.setCookie('last_dif', game.ui.difficulty[0].value, 14);
+                switch (game.ui.difficulty[0].value) {
+                    case "1": {
+                        let title = 'Easy Difficulty';
+                        let message = 'Easy difficulty has a pattern length of 6 and you get 1 life.'
+                        game.notify.toast(title, message, 'fast');
+                        break;
+                    }
+                    case "2": {
+                        let title = 'Normal Difficulty';
+                        let message = 'Normal difficulty has a pattern length of 8 and you get 1 life.'
+                        game.notify.toast(title, message);
+                        break;
+                    }
+                    case "3": {
+                        let title = 'Hard Difficulty';
+                        let message = 'Hard difficulty has a pattern length of 10 and you get 2 lives.'
+                        game.notify.toast(title, message);
+                        break;
+                    }
+                    case "4": {
+                        let title = 'Expert Difficulty';
+                        let message = 'Expert difficulty has a pattern length of 12 and you get 2 lives.'
+                        game.notify.toast(title, message);
+                        break;
+                    }
+                    case "5": {
+                        let title = 'Impossible Difficulty';
+                        let message = 'Impossible difficulty has a pattern length of 50 and you get 5 lives.'
+                        game.notify.toast(title, message);
+                        break;
+                    }
+                    default: {
+                        let title = 'Error';
+                        let message = 'Something has gone wrong.'
+                        game.notify.toast(title, message);
+                    }
+                }
+
             });
             let i = 0;
             for (i = 0; i < game.ui.key.length; i++) {
