@@ -14,7 +14,7 @@ let game = {
     ui: {
         keypad: $('.keypad')[0],
         key: $('.keypad')[0].children,
-        button: $('.btn'),
+        button: $('#start-button'),
         difficulty: $('#difficultySelect'),
         score: $('#score'),
         highscore: $('#highscore'),
