@@ -59,6 +59,7 @@ let game = {
                     if (parseInt(game.ui.highscore.text()) >= 7700 && !game.var.easteregg) {
                         game.notify.toast('You unlocked the easter egg!', 'You beat the game and unlocked the Impossible Difficulty!');
                         game.var.easteregg = true;
+                        game.task.easteregg();
                         game.task.setCookie('easteregg', true, 365);
                     } else {
                         game.notify.toast('Nice!', 'You got a score of ' + game.var.score + ' which is your new personal best!');
