@@ -43,11 +43,6 @@ let game = {
             let duration = 200;
             game.var.score += 100 * game.var.position;
             game.ui.score.text(game.var.score);
-            if (game.var.score > parseInt(game.ui.highscore.text())) {
-                game.var.newhighscore = true;
-                game.ui.highscore.text(game.var.score);
-                game.task.setCookie('highscore', game.var.score, 14);
-            }
             if (end) {
                 duration = 400;
                 game.ui.stage.text('0');
@@ -55,7 +50,10 @@ let game = {
                 game.ui.gamecontrol.slideDown('fast');
                 $('#stage-box').slideUp('fast');
                 $('#lives-box').slideUp('fast');
-                if (game.var.newhighscore) {
+                if (game.var.score > parseInt(game.ui.highscore.text())) {
+                    game.var.newhighscore = true;
+                    game.ui.highscore.text(game.var.score);
+                    game.task.setCookie('highscore', game.var.score, 14);
                     if (parseInt(game.ui.highscore.text()) >= 7700 && !game.var.easteregg) {
                         game.notify.toast('You unlocked the easter egg!', 'You beat the game and unlocked the Impossible Difficulty!');
                         game.task.easteregg();
@@ -85,6 +83,12 @@ let game = {
                     game.ui.gamecontrol.slideDown('fast');
                     $('#stage-box').slideUp('fast');
                     $('#lives-box').slideUp('fast');
+                    if (game.var.score > parseInt(game.ui.highscore.text())) {
+                        game.var.newhighscore = true;
+                        game.ui.highscore.text(game.var.score);
+                        game.task.setCookie('highscore', game.var.score, 14);
+                        game.notify.toast('Nice!', 'You got a score of ' + game.var.score + ' which is your new personal best!');
+                    }
                 });
             } else {
                 $(game.ui.key).addClass('incorrect').delay(400).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
