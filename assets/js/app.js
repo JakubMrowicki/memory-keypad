@@ -58,9 +58,7 @@ let game = {
                 if (game.var.newhighscore) {
                     if (parseInt(game.ui.highscore.text()) >= 7700 && !game.var.easteregg) {
                         game.notify.toast('You unlocked the easter egg!', 'You beat the game and unlocked the Impossible Difficulty!');
-                        game.var.easteregg = true;
                         game.task.easteregg();
-                        game.task.setCookie('easteregg', true, 365);
                     } else {
                         game.notify.toast('Nice!', 'You got a score of ' + game.var.score + ' which is your new personal best!');
                     }
@@ -283,17 +281,19 @@ let game = {
                                     <td>5</td>
                                 </tr>`;
             $('#tablebody').append(tablerow);
+            game.var.easteregg = true;
+            game.task.setCookie('easteregg', true, 365);
         },
 
         init() {
-            if (game.task.getCookie('last_dif') > 0) {
-                game.ui.difficulty[0].value = game.task.getCookie('last_dif');
-            }
             if (game.task.getCookie('highscore') > 0) {
                 game.ui.highscore.text(game.task.getCookie('highscore'));
             }
             if (game.task.getCookie('easteregg') === 'true') {
                 game.task.easteregg();
+            }
+            if (game.task.getCookie('last_dif') > 0) {
+                game.ui.difficulty[0].value = game.task.getCookie('last_dif');
             }
             game.ui.difficulty[0].addEventListener('change', function () {
                 game.task.setCookie('last_dif', game.ui.difficulty[0].value, 14);
