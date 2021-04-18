@@ -88,6 +88,10 @@ kbd {
     border: 1px solid #6c757d;
 }
 
+.modal-content {
+    background-color: #191C24;
+}
+
 /*Overrides End*/
 
 /*Keypad Start*/
