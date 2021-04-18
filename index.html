@@ -20,61 +20,58 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <h1 class="display1 text-center mt-4">Memory Keypad</h1>
-            <small class="d-block text-center">A memory mini-game</small>
-            <div class="row">
-                <div class="col-12 my-3">
-                    <div class="keypad">
-                        <div id="1" class="square"></div>
-                        <div id="2" class="square"></div>
-                        <div id="3" class="square"></div>
-                        <div id="4" class="square"></div>
-                        <div id="5" class="square"></div>
-                        <div id="6" class="square"></div>
-                        <div id="7" class="square"></div>
-                        <div id="8" class="square"></div>
-                        <div id="9" class="square"></div>
-                    </div>
+    <header class="container">
+        <h1 class="display1 text-center mt-3">Memory Keypad</h1>
+        <small class="d-block text-center">A memory mini-game</small>
+        <div class="row">
+            <div class="col-12 my-3">
+                <div class="keypad">
+                    <div id="1" class="square"></div>
+                    <div id="2" class="square"></div>
+                    <div id="3" class="square"></div>
+                    <div id="4" class="square"></div>
+                    <div id="5" class="square"></div>
+                    <div id="6" class="square"></div>
+                    <div id="7" class="square"></div>
+                    <div id="8" class="square"></div>
+                    <div id="9" class="square"></div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="input-group my-3 mx-auto">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="game.task.start();">Start
-                                Game</button>
-                        </div>
-                        <select class="custom-select" id="difficultySelect">
-                            <option value="1" selected>Easy Difficulty</option>
-                            <option value="2">Normal Difficulty</option>
-                            <option value="3">Hard Difficulty</option>
-                            <option value="4">Expert Difficulty</option>
-                        </select>
+    <main class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="input-group my-3 mx-auto">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="game.task.start();">Start
+                            Game</button>
                     </div>
+                    <select class="custom-select" id="difficultySelect">
+                        <option value="1" selected>Easy Difficulty</option>
+                        <option value="2">Normal Difficulty</option>
+                        <option value="3">Hard Difficulty</option>
+                        <option value="4">Expert Difficulty</option>
+                    </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-12 my-3">
-                    <div class="content-area">
-                        <span id="score" class="d-block big text-center">0</span>
-                        <span class="d-block pb-2 text-center">Score</span>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12 my-3">
-                    <div class="content-area">
-                        <span id="highscore" class="d-block big text-center">0</span>
-                        <span class="d-block pb-2 text-center">Personal Best</span>
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 my-3">
+                <div class="content-area">
+                    <span id="score" class="d-block big text-center">0</span>
+                    <span class="d-block pb-2 text-center">Score</span>
                 </div>
             </div>
-            <div class="row py-md-5 py-3">
+            <div class="col-md-6 col-sm-12 my-3">
+                <div class="content-area">
+                    <span id="highscore" class="d-block big text-center">0</span>
+                    <span class="d-block pb-2 text-center">Personal Best</span>
+                </div>
+            </div>
+        </div>
+        <!--<div class="row py-md-5 py-3">
                 <div class="col-12">
                     <h2>About Memory Keypad</h2>
                     <p>Memory Keypad is a pattern based memory mini-game inspired by the indie game Among Us.</p>
@@ -117,34 +114,31 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+            </div>-->
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md">
-                    <ul class="list-unstyled d-flex flex-row mt-md-3 justify-content-center">
-                        <li class="px-md-3 px-5">
-                            <a href="https://github.com/JakubMrowicki/memory-keypad" target="_blank"><i
-                                    class="fab fa-github sm-icons github fade-icon"></i></a>
-                        </li>
-                        <li class="px-md-3 px-5">
-                            <a href="https://www.facebook.com" target="_blank"><i
-                                    class="fab fa-facebook sm-icons fade-icon"></i></a>
-                        </li>
-                        <li class="px-md-3 px-5">
-                            <a href="https://www.twitter.com" target="_blank"><i
-                                    class="fab fa-twitter sm-icons twitter fade-icon"></i></a>
-                        </li>
-                    </ul>
-                </div>
+    <footer class="container">
+        <div class="row">
+            <div class="col-md">
+                <ul class="list-unstyled d-flex flex-row mt-md-3 justify-content-center">
+                    <li class="px-md-3 px-5">
+                        <a href="https://github.com/JakubMrowicki/memory-keypad" target="_blank"><i
+                                class="fab fa-github sm-icons github fade-icon"></i></a>
+                    </li>
+                    <li class="px-md-3 px-5">
+                        <a href="https://www.facebook.com" target="_blank"><i
+                                class="fab fa-facebook sm-icons fade-icon"></i></a>
+                    </li>
+                    <li class="px-md-3 px-5">
+                        <a href="https://www.twitter.com" target="_blank"><i
+                                class="fab fa-twitter sm-icons twitter fade-icon"></i></a>
+                    </li>
+                </ul>
             </div>
-            <div class="row">
-                <div class="col-md">
-                    <span class="d-block text-center small mb-3">(C) Memory Keypad 2021</span>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <span class="d-block text-center small mb-3">(C) Memory Keypad 2021</span>
             </div>
         </div>
     </footer>

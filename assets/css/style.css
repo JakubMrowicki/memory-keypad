@@ -9,6 +9,7 @@
 body {
     /*Generated using cssmatic.com*/
     background: #242a38;
+    background-size: 100%;
     background: -moz-radial-gradient(center, ellipse cover, #242a38 0%, #191c24 67%, #07080a 100%);
     background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #242a38), color-stop(67%, #191c24), color-stop(100%, #07080a));
     background: -webkit-radial-gradient(center, ellipse cover, #242a38 0%, #191c24 67%, #07080a 100%);
@@ -16,6 +17,7 @@ body {
     background: -ms-radial-gradient(center, ellipse cover, #242a38 0%, #191c24 67%, #07080a 100%);
     background: radial-gradient(ellipse at center, #242a38 0%, #191c24 67%, #07080a 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#242a38', endColorstr='#07080a', GradientType=1);
+
 }
 
 h1,
@@ -89,6 +91,7 @@ kbd {
 /*Overrides End*/
 
 /*Keypad Start*/
+
 .keypad {
     max-width: 400px;
     margin: 0 auto;
@@ -173,4 +176,16 @@ kbd {
 
 .sm-icons:hover {
     opacity: 0.2;
+}
+
+/*Media Queries*/
+
+/*Vertically Center Game Medium Screen Size+*/
+@media screen and (min-width: 768px) {
+    body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
