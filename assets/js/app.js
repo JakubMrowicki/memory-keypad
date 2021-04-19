@@ -380,14 +380,12 @@ let game = {
                             game.notify.hidetoast();
                             game.anim.pattern();
                         } else {
-                            console.log(text); //Show error message in console.
                             game.task.offlinepattern(length);
                         }
 
                     });
                 })
                 .catch(error => {
-                    console.log(error); //Show error message in console.
                     game.task.offlinepattern(length);
                 });
         },
@@ -450,7 +448,7 @@ let game = {
                     case "1": {
                         let title = 'Easy Difficulty';
                         let message = 'Easy difficulty has a pattern length of 6 and you get 1 life.';
-                        game.notify.toast(title, message, 'fast');
+                        game.notify.toast(title, message);
                         break;
                     }
                     case "2": {
