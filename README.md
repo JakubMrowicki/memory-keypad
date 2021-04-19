@@ -17,6 +17,7 @@ The goal of this website is to create a __fun and simple memory game__. The func
     * [Skeleton Plane](#skeleton-plane)
     * [Surface Plane](#surface-plane)
 4. [Features](#4-features)
+    * [Future Features](#future-features)
 5. [Technologies Used](#5-technologies-used)
 6. [Trials & Testing](#6-trials--testing)
 7. [Problem Solving](#7-problem-areas--solutions)
