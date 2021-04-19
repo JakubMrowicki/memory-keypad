@@ -319,7 +319,7 @@ let game = {
                 }
             } else { //Otherwise the pattern and player input do not match, meaning the player made a mistake.
                 //If the player still has lives left, then allow another turn
-                if (game.var.lives > 0) {
+                if (game.var.lives > 1) {
                     game.var.keypause = true;
                     game.var.lives--;
                     game.ui.lives.text(game.var.lives);

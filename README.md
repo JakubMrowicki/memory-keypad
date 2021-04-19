@@ -126,7 +126,7 @@ This project uses the following technologies:
 * [Random.org API](https://www.random.org/clients/http/)
 
 # 6: Trials & Testing
-* 
+* Make sure players have the amount of lives as described below keypad.
 
 # 7: Problem Areas & Solutions
 * 
@@ -157,7 +157,7 @@ To deploy the project, the following steps were followed.
 # 10: Credits & Acknowledgments
 * Many thanks to my mentor, Ignatius Ukwuoma for his suggestions and overall support of this project.
 * Thanks to the Slack CI Peer Review Community for spotting issues, always great to have fresh eyes on a project like this.
-* Thanks to [https://stackoverflow.com/a/20457076](Jason Yaraghi and web-tiki) for their response about square divs that maintain their aspect ratio.
+* Thanks to [Jason Yaraghi and web-tiki](https://stackoverflow.com/a/20457076) for their response about responsive square divs that maintain their aspect ratio.
 
 ### Content
 * All written content is written by myself.
