@@ -61,6 +61,8 @@ Below are some user stories which reveal how this website is helpful.
 * Game Start button
 * Difficulty settings
 * Scoring system
+* Life system
+* Show game progress
 * About section
 * Footer
 ---
