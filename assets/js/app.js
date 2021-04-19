@@ -418,8 +418,10 @@ let game = {
          */
 
         resethighscore() {
-            game.task.eraseCookie('highscore');
-            location.reload();
+            if (game.task.getCookie('highscore') > 0) {
+                game.ui.highscore.text('0');
+                game.task.eraseCookie('highscore');
+            }
         },
 
         /**
