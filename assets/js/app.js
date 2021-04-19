@@ -421,6 +421,9 @@ let game = {
             if (game.task.getCookie('highscore') > 0) {
                 game.ui.highscore.text('0');
                 game.task.eraseCookie('highscore');
+                game.notify.toast('Cookie Cleared', 'Your saved high score has been reset back to 0');
+            } else {
+                game.notify.toast('Error', 'Your highscore cannot be reset because there is none set.');
             }
         },
 
