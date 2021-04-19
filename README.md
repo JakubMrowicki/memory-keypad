@@ -109,9 +109,19 @@ Off-White | #FAFAFA | ![#FAFAFA](https://via.placeholder.com/15/FAFAFA/000000?te
 
 "[Open Sans](https://fonts.google.com/specimen/Open+Sans)" will be used for the body.
 # 4: Features
-* 
+* Start Game by clicking start button or by simply clicking on the keypad itself.
+* Select difficulty and get notified of difficulty rules.
+* Help button that opens a modal with more information about the game.
+    * Ability to reset highscore saved in cookie.
+* Pattern Generated using Random.org API.
+    * If Random.org API returns an error, the pattern is generated locally so that the game can still be played.
+* The game will remember your highscore, last difficulty setting used and whether or not you have unlocked the easter egg
+* Scoring system that increments exponentially. Meaning that you earn more score for remembering a more complex pattern.
+* Life system that allows you to get another chance to beat the game. Using a life however will decrease your score based on the stage(later stage will lose more score if you make a mistake).
+* User input will be ignored when the game is playing out the pattern to avoid errors due to misclicks.
 ### Future Features
 * A timer. This timer will end the game if it reaches 0. Timer can be reset by user input. Used to prevent idle games/cheating.
+* Change the pattern generation method so that the pattern is generated on the fly instead of all at once to help prevent cheating.
 # 5: Technologies Used
 This project uses the following technologies:
 * HTML5
@@ -126,6 +136,13 @@ This project uses the following technologies:
 * [Random.org API](https://www.random.org/clients/http/)
 
 # 6: Trials & Testing
+* Website was run through the Mobile-Friendly Test by Google and was deemed Mobile Friendly. To further test this, I opened the website on my phone as well as friends and co-workers phones.
+    * [Google Mobile-Friendly Test](https://search.google.com/test/mobile-friendly?id=YtC6Iv3b3o0T8zjpbLbqcw)
+* Validated HTML, CSS and JS using validators.
+* Checked that all links are working using [deadlinkchecker.com](https://www.deadlinkchecker.com/website-dead-link-checker.asp)
+* Ran style.css through [Autoprefixer](https://autoprefixer.github.io/) to add vendor prefixes.
+* Used [Color Contrast Accessibility Validator](https://color.a11y.com/Contrast/) to check for Colour Contrast issues.
+* Checked and fixed any typos and grammar issues that I could find by using a [Chrome Extension called Webpage Spell-Check](https://chrome.google.com/webstore/detail/webpage-spell-check/mgdhaoimpabdhmacaclbbjddhngchjik).
 * Make sure players have the amount of lives as described below keypad.
 
 # 7: Problem Areas & Solutions
