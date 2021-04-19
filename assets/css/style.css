@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@700&family=Zilla+Slab+Highlight:wght@700&display=swap');
 
 /*Overrides Start*/
@@ -9,11 +16,8 @@
 body {
     /*Generated using cssmatic.com*/
     background: #242a38;
-    background: -moz-radial-gradient(center, ellipse cover, #242a38 0%, #191c24 67%, #07080a 100%);
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #242a38), color-stop(67%, #191c24), color-stop(100%, #07080a));
-    background: -webkit-radial-gradient(center, ellipse cover, #242a38 0%, #191c24 67%, #07080a 100%);
     background: -o-radial-gradient(center, ellipse cover, #242a38 0%, #191c24 67%, #07080a 100%);
-    background: -ms-radial-gradient(center, ellipse cover, #242a38 0%, #191c24 67%, #07080a 100%);
+    background: -o-radial-gradient(center, ellipse, #242a38 0%, #191c24 67%, #07080a 100%);
     background: radial-gradient(ellipse at center, #242a38 0%, #191c24 67%, #07080a 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#242a38', endColorstr='#07080a', GradientType=1);
     overflow-x: hidden;
@@ -119,32 +123,41 @@ kbd {
 .on {
     border: 3px solid #336AFF;
     -webkit-box-shadow: 0px 0px 30px 5px rgba(51, 106, 255, 0.5);
-    -moz-box-shadow: 0px 0px 30px 5px rgba(51, 106, 255, 0.5);
     box-shadow: 0px 0px 30px 5px rgba(51, 106, 255, 0.5);
+    -webkit-transition: 0.3s ease-out;
+    -o-transition: 0.3s ease-out;
     transition: 0.3s ease-out;
 }
 
 .light {
     background-color: #336AFF;
     border: 3px solid #336AFF;
+    -webkit-transition: 0.1s;
+    -o-transition: 0.1s;
     transition: 0.1s;
 }
 
 .lightcomputer {
     background-color: #bdc3c7;
     border: 3px solid #336AFF;
+    -webkit-transition: 0.1s;
+    -o-transition: 0.1s;
     transition: 0.1s;
 }
 
 .correct {
     background-color: #2B9348;
     border: 3px solid #2B9348;
+    -webkit-transition: 0.1s;
+    -o-transition: 0.1s;
     transition: 0.1s;
 }
 
 .incorrect {
     background-color: #D90429;
     border: 3px solid #D90429;
+    -webkit-transition: 0.1s;
+    -o-transition: 0.1s;
     transition: 0.1s;
 }
 
@@ -169,7 +182,6 @@ kbd {
     /* iOS Safari */
     -webkit-user-select: none;
     /* Safari */
-    -khtml-user-select: none;
     /* Konqueror HTML */
     -moz-user-select: none;
     /* Old versions of Firefox */
@@ -188,6 +200,8 @@ kbd {
     font-size: 32px;
     color: #1778F2;
     opacity: 1;
+    -webkit-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
     transition: 0.2s ease;
 }
 
@@ -212,8 +226,15 @@ kbd {
     /*Vertically Center Game If Screen Height > Game Height*/
     body {
         height: 100vh;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
     }
 }
