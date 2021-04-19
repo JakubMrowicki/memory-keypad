@@ -377,7 +377,7 @@ let game = {
                             game.ui.maxstage.text(length - 1);
                             $('#stage-box').slideDown('fast');
                             $('#lives-box').slideDown('fast');
-                            game.notify.toast('Success', 'Connected to Random.org');
+                            game.notify.hidetoast();
                             game.anim.pattern();
                         } else {
                             console.log(text); //Show error message in console.
