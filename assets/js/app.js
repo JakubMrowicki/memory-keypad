@@ -1,5 +1,20 @@
 let game = {
 
+    /**
+     *var:            contains variables that enable the game to be played.
+     *pattern:        is used to save the random numbers generated using RANDOM.ORG.
+     *input:          is used to keep track of the user's input.
+     *lives:          is used to keep track of the amount of lives left.
+     *score:          is used to keep track of score.
+     *difficulty:     is used to set the game difficulty
+     *position:       is used to track the progress of the game.
+     *gamelength:     is used to set the length of the pattern/game.
+     *live:           is used to verify that a game is in progress.
+     *keypause:       is used to allow or disallow user input.
+     *newhighscore:   is used to check if a new highscore was achieved.
+     *easteregg:      is used to check if the easteregg has been unlocked.
+     */
+
     var: {
         pattern: [],
         input: [],
@@ -14,6 +29,10 @@ let game = {
         easteregg: false
     },
 
+    /**
+     *ui: contains frequently used ui elements.
+     */
+
     ui: {
         keypad: $('.keypad')[0],
         key: $('.keypad')[0].children,
@@ -27,8 +46,19 @@ let game = {
         maxstage: $('#max-stage')
     },
 
+    /**
+     * anim: contains various animations.
+     */
+
     anim: {
-        light(element, com = false) { //Animation When Key Pressed
+
+        /**
+         * light(element, com) is a function that lights up a key on the keypad when pressed(either by user or the com(computer)).
+         * @param {string} element - denotes the element to light up on press.
+         * @param {boolean} com - denotes whether it was pressed by the computer or by the user.
+         */
+
+        light(element, com = false) {
             let className = "light";
             if (com) {
                 className = "lightcomputer";
@@ -39,7 +69,14 @@ let game = {
             }, 220);
         },
 
-        win(end = false) { //Animation When Game Won
+        /**
+         * win(end) is a function that is run when a stage is completed successfully or when the game is ending.
+         * It turns the keypad a green colour, increments the score, highscore and stage.
+         * Also it calls game.notify.toast() to let a user know if they beat a highscore or if they unlocked the easter egg.
+         * @param {boolean} end - denotes whether it is the end of the game or not.
+         */
+
+        win(end = false) {
             let duration = 200;
             game.var.score += 100 * game.var.position;
             game.ui.score.text(game.var.score);
@@ -69,7 +106,14 @@ let game = {
             });
         },
 
-        loss(end = true) { //Animation When Game Lost
+        /**
+         * loss(end) is a function that is run when a mistake is made or if the game has come to an end.
+         * It turns the keypad a red colour, updates the score and highscore.
+         * Also it calls game.notify.toast() to let a user know if they beat a highscore.
+         * @param {boolean} end - denotes whether it is the end of the game or not.
+         */
+
+        loss(end = true) {
             if (end) {
                 $(game.ui.key).addClass('incorrect').delay(400).queue(function () { //Credit PetersenDidIt https://stackoverflow.com/a/2510255
                     $(game.ui.key).removeClass('incorrect').dequeue();
@@ -99,6 +143,10 @@ let game = {
             }
         },
 
+        /**
+         * pattern() is a function that pauses userinput and plays out the pattern on the keypad for the user to remember and repeat after.
+         */
+
         pattern() { //Animation For Playing Pattern
             game.var.keypause = true;
             game.ui.stage.text(game.var.position - 1);
@@ -114,13 +162,28 @@ let game = {
         }
     },
 
+    /*
+    notify: contains functions to notify the user of a new highscore or a connection issue.
+    */
+
     notify: {
+
+        /**
+         * toast(title, message) is a function that shows a toast notification at the top of the screen.
+         * @param {string} title - title of toast notification
+         * @param {string} message - message body of toast notification
+         */
+
         toast(title, message) {
             $('#toast-title').text(title);
             $('.toast-body').text(message);
             $('.toast').toast('show');
         },
 
+        /**
+         * hidetoast(delay) is a function that hides a toast notification instantly or after a delay.
+         * @param {number} delay - ms delay before hiding toast
+         */
         hidetoast(delay) {
             if (delay) {
                 setTimeout(() => {
@@ -132,7 +195,16 @@ let game = {
         }
     },
 
+    /*
+    task: contains various functions required to run the game.
+    */
+
     task: {
+
+        /**
+         * start() this is a function that activates the keypad, sets the difficulty and starts generating the pattern.
+         */
+
         start() { //Start the game
             game.ui.gamecontrol.slideUp('fast');
             game.task.reset();
@@ -146,6 +218,10 @@ let game = {
             game.ui.difficulty.prop('disabled', true);
         },
 
+        /**
+         * reset() is a function that resets game variables to defaults.
+         */
+
         reset() {
             game.var.pattern = [];
             game.var.input = [];
@@ -158,6 +234,11 @@ let game = {
             game.ui.score.text("0");
             game.ui.button.text("Start Game");
         },
+
+        /**
+         * difficulty(difficulty) is a function that sets the game variables according to the difficulty setting applied by the user.
+         * @param {number} difficulty - difficulty value from game.ui.difficulty select options.
+         */
 
         difficulty(difficulty) {
             switch (difficulty) {
@@ -192,9 +273,15 @@ let game = {
             }
         },
 
-        play() { //Runs on key click, sends clicks for validation
+        /**
+         * play() is a function that runs when a user clicks the keypad.
+         * if the game is not live, then the game will start.
+         * if there is no keypause active and the game is in fact live, the user input will be recorded and validated.
+         */
+
+        play() {
             if (!game.var.live) {
-                game.task.start(); //Start game if click on idle keypad.
+                game.task.start();
             }
             if (!game.var.keypause && game.var.live) {
                 let selected = parseInt($(this).attr('id'));
@@ -204,11 +291,18 @@ let game = {
             }
         },
 
+        /**
+         * validate() is a function that compares the player input to the pre-grenerated pattern based on the games progress.
+         * It also decides whether the game continues or if the game ends.
+         */
+
         validate() { //Check player input
             let progress = game.var.input.length;
             let correct = game.var.pattern.slice(0, progress);
-            if (correct.toString() == game.var.input.toString()) {
-                if (game.var.input.length == game.var.gamelength) {
+            //If player input matches the pattern so far
+            if (correct.toString() === game.var.input.toString()) {
+                //If player input length is the same as the game length then end the game.
+                if (game.var.input.length === game.var.gamelength) {
                     game.anim.win(true);
                     game.ui.button.prop('disabled', false);
                     game.ui.difficulty.prop('disabled', false);
@@ -216,33 +310,39 @@ let game = {
                     game.var.live = false;
                     $(game.ui.key).removeClass('on');
                 }
-                if (progress == game.var.position && progress !== game.var.gamelength) {
+                //If player input length is same as game position AND player input length does not match game length then continue game.
+                if (progress === game.var.position && progress !== game.var.gamelength) {
                     game.anim.win();
                     game.var.position++;
                     game.var.input = [];
                     game.anim.pattern();
                 }
-            } else {
+            } else { //Otherwise the pattern and player input do not match, meaning the player made a mistake.
+                //If the player still has lives left, then allow another turn
                 if (game.var.lives > 0) {
                     game.var.keypause = true;
                     game.var.lives--;
                     game.ui.lives.text(game.var.lives);
                     game.var.score -= 50 * game.var.position;
-                    if (game.var.score < 0) {
+                    if (game.var.score < 0) { //If players score drops below 0, reset score back to 0.
                         game.var.score = 0;
                     }
                     game.ui.score.text(game.var.score);
                     game.anim.loss(false);
-                } else {
+                } else { //Player has no lives left hence end the game entirely.
                     game.anim.loss();
                 }
             }
         },
 
+        /**
+         * offlinepattern(length) is a function that runs if there is something wrong with the connection to RANDOM.ORG.
+         * @param {number} length - denotes the length of the pattern.
+         */
+
         offlinepattern(length) {
             game.notify.toast('Connection Failed', 'Could not connect to Random.org. Generating game pattern locally.');
             game.notify.hidetoast(5000);
-            console.log(error);
             let randomNumArray = [];
             for (let i = 0; i < length; i++) {
                 let num = Math.floor((Math.random() * 9) + 1);
@@ -254,6 +354,13 @@ let game = {
             $('#lives-box').slideDown('fast');
             game.anim.pattern();
         },
+
+        /**
+         * pattern(length) is a function that makes a request to RANDOM.ORG. The request calls for 'length' amount of numbers as per the difficulty setting.
+         * If the response contains 'Error:' that means something is wrong on RANDOM.ORG's side and offlinepattern() is used instead.
+         * If the user has lost connection after loading the game, offlinepattern() is called.
+         * @param {number} length - denotes the length of the pattern.
+         */
 
         pattern(length) { //Get Random Number Of Length Of length from random.org api
             game.notify.toast('Please Wait', 'Connecting to Random.org');
@@ -270,20 +377,26 @@ let game = {
                             game.ui.maxstage.text(length - 1);
                             $('#stage-box').slideDown('fast');
                             $('#lives-box').slideDown('fast');
-                            game.notify.hidetoast();
+                            game.notify.toast('Success', 'Connected to Random.org');
                             game.anim.pattern();
                         } else {
-                            console.log(text);
+                            console.log(text); //Show error message in console.
                             game.task.offlinepattern(length);
                         }
 
                     });
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log(error); //Show error message in console.
                     game.task.offlinepattern(length);
                 });
         },
+
+        /**
+         * easteregg() is a function that adds a table row to the games help page about the Impossible difficulty
+         * It adds the Impossible difficulty to the select, allowing the user to play it.
+         * It also sets a cookie so that their award is saved.
+         */
 
         easteregg() {
             let option = `<option value="5">Impossible Difficulty</option>`;
@@ -300,20 +413,31 @@ let game = {
             game.task.setCookie('easteregg', true, 365);
         },
 
+        /**
+         * resethighscore() is a function that allows the user to reset their saved highscore.
+         */
+
         resethighscore() {
             game.task.eraseCookie('highscore');
             location.reload();
         },
 
+        /**
+         * init() is a function that is called right when the website loads
+         * It checks if any cookies are saved, and loads data from them.
+         * Plays an animation to unveil the keypad.
+         * Adds event listeners to the keypad keys and the difficulty select.
+         */
+
         init() {
-            if (game.task.getCookie('highscore') > 0) {
-                game.ui.highscore.text(game.task.getCookie('highscore'));
+            game.task.checkCookies();
+            for (let i = 0; i < game.ui.key.length; i++) {
+                $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
+                    opacity: 1
+                }, 1000);
             }
-            if (game.task.getCookie('easteregg') === 'true') {
-                game.task.easteregg();
-            }
-            if (game.task.getCookie('last_dif') > 0) {
-                game.ui.difficulty[0].value = game.task.getCookie('last_dif');
+            for (let j = 0; j < game.ui.key.length; j++) {
+                game.ui.key[j].addEventListener('mousedown', game.task.play);
             }
             game.ui.difficulty[0].addEventListener('change', function () {
                 game.task.setCookie('last_dif', game.ui.difficulty[0].value, 14);
@@ -354,20 +478,16 @@ let game = {
                         game.notify.toast(title, message);
                     }
                 }
-
             });
-            for (let i = 0; i < game.ui.key.length; i++) {
-                $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
-                    opacity: 1
-                }, 1000);
-            }
-            for (let j = 0; j < game.ui.key.length; j++) {
-                game.ui.key[j].addEventListener('mousedown', game.task.play);
-            }
-
         },
 
-        /* Thanks to Mandeep Janjua & quirksmode.org for the below cookie functions https://stackoverflow.com/a/24103596 https://www.quirksmode.org/js/cookies.html */
+        /**
+         * Thanks to Mandeep Janjua & quirksmode.org for the below cookie functions https://stackoverflow.com/a/24103596 https://www.quirksmode.org/js/cookies.html
+         * setCookie(name, value, days) is a function that sets a cookie, sets it's value and expiry date.
+         * @param {string} name - denotes the name of the cookie
+         * @param {string} value - denotes the value of the newly set cookie
+         * @param {number} days - denotes the number of days until the cookie will expire
+         */
 
         setCookie(name, value, days) {
             var expires = "";
@@ -378,6 +498,11 @@ let game = {
             }
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         },
+
+        /**
+         * getCookie(name) is a function that retrieves the value saved in the cookie specified.
+         * @param {string} name - denotes the cookie name.  
+         */
 
         getCookie(name) {
             var nameEQ = name + "=";
@@ -390,8 +515,31 @@ let game = {
             return null;
         },
 
+        /**
+         * eraseCookie(name) is a function that erases the cookie specified.
+         * @param {string} name - denotes the cookie name. 
+         */
+
         eraseCookie(name) {
             document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        },
+
+        /**
+         * checkCookies() is a function that checks if any cookies are saved.
+         * If they are then the data from them is read and displayed accordingly.
+         * This enables the game to remember your last highscore, last selected difficulty and whether or not you have unlocked the easter egg.
+         */
+
+        checkCookies() {
+            if (game.task.getCookie('highscore') > 0) {
+                game.ui.highscore.text(game.task.getCookie('highscore'));
+            }
+            if (game.task.getCookie('easteregg') === 'true') {
+                game.task.easteregg();
+            }
+            if (game.task.getCookie('last_dif') > 0) {
+                game.ui.difficulty[0].value = game.task.getCookie('last_dif');
+            }
         }
     },
 
