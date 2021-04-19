@@ -122,12 +122,16 @@ Off-White | #FAFAFA | ![#FAFAFA](https://via.placeholder.com/15/FAFAFA/000000?te
 * Scoring system that increments exponentially. Meaning that you earn more score for remembering a more complex pattern.
 * Life system that allows you to get another chance to beat the game. Using a life however will decrease your score based on the stage(later stage will lose more score if you make a mistake).
 * User input will be ignored when the game is playing out the pattern to avoid errors due to misclicks.
+* An easter egg that is unlocked by achieving the maximum score in the game. 7700
 ### Future Features
 * A timer. This timer will end the game if it reaches 0. Timer can be reset by user input. Used to prevent idle games/cheating.
 * Change the pattern generation method so that the pattern is generated on the fly instead of all at once to help prevent cheating.
 * User profiles
 * Leaderboard
 * Versus Mode to play against friends.
+* Sound Effects
+
+
 # 5: Technologies Used
 This project uses the following technologies:
 * HTML5
@@ -139,6 +143,7 @@ This project uses the following technologies:
 * Google Fonts
 * Github & Git
 * GitPod
+* Photoshop
 * [Random.org API](https://www.random.org/clients/http/)
 
 # 6: Trials & Testing
@@ -150,6 +155,34 @@ This project uses the following technologies:
 * Used [Color Contrast Accessibility Validator](https://color.a11y.com/Contrast/) to check for Colour Contrast issues.
 * Checked and fixed any typos and grammar issues that I could find by using a [Chrome Extension called Webpage Spell-Check](https://chrome.google.com/webstore/detail/webpage-spell-check/mgdhaoimpabdhmacaclbbjddhngchjik).
 * Make sure players have the amount of lives as described below keypad.
+* Checked that each difficulty setting works and the game responds as expected. Win or loss.
+* Checked that the help button works, and that the content in the modal is displaying correctly.
+    * Checked that the highscore reset button works as intended.
+* Checked that you cannot double click and start the game twice.
+* Checked that you cannot input when the game is playing out a pattern.
+* Checked that you cannot achieve a negative score by using a life.
+* Checked that you can still play the game if you lose internet connection.
+* Checked that you can still play the game if Random.org API returns an error.
+* Checked that you will get notified of a new best score. Win or lose.
+* Checked that the easter egg is unlocked when you reach 7700 score.
+    * User notified of unlock.
+    * Impossible Difficulty is added.
+    * The table in the help section now tells you about the Impossible difficulty.
+* Checked that cookies are saved when you:
+    * Unlock the easter egg
+    * Change difficulty
+    * Get a new high score
+* Checked that when you refresh the page, the cookies are read and set properly.
+    * The difficulty setting used last is set.
+    * High score displays saved value.
+    * The easter egg is still unlocked after refresh.
+* Checked that the GitHub icon in the footer opens in a new tab.
+* Checked that you can indeed click on the keypad to start a game.
+* Checked that the keypad animation plays on page load, mobile or otherwise.
+* Checked that toast notifications can be closed by clicking on them.
+* Checked that users with a slow internet connection can see a toast notification telling them that the game is waiting to connect to the random.org api. So that they know why they are waiting.
+* Checked that the game.anim.pattern() function properly renders the pattern. Even double clicks.
+* Checked that the highscore is only saved at the end of the game. Win or loss.
 
 # 7: Problem Areas & Solutions
 * My friends were not sure if the game was active or not when I showed them.
