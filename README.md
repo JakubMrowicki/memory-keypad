@@ -90,23 +90,15 @@ The footer will contain copyright information and some social media links.
 __Primary Colours:__
 Colour | Colour Code | Preview
 --- | --- | :---:
-Dark-Blue | #21209C | ![#21209C](https://via.placeholder.com/15/21209C/000000?text=+)
+Light-Blue | #336AFF | ![#F26432](https://via.placeholder.com/15/336AFF/000000?text=+)
 Green | #2B9348 | ![!2B9348](https://via.placeholder.com/15/2B9348/000000?text=+)
 Red | #D90429 | ![#D90429](https://via.placeholder.com/15/D90429/000000?text=+)
-Light-Grey | #F1F1F1 | ![#F1F1F1](https://via.placeholder.com/15/F1F1F1/000000?text=+)
 Dark-Grey | #191C24 | ![#191C24](https://via.placeholder.com/15/191C24/000000?text=+)
-
-
-__Highlight/Focus Colour:__ 
-Colour | Colour Code | Preview
---- | --- | :---:
-Light-Blue | #336AFF | ![#F26432](https://via.placeholder.com/15/336AFF/000000?text=+)
 
 
 __Text Body Colours:__
 Colour | Colour Code | Preview
 --- | --- | :---:
-Dark-Grey | #383838 | ![#383838](https://via.placeholder.com/15/383838/000000?text=+)
 Off-White | #FAFAFA | ![#FAFAFA](https://via.placeholder.com/15/FAFAFA/000000?text=+)
 
 
@@ -117,7 +109,9 @@ Off-White | #FAFAFA | ![#FAFAFA](https://via.placeholder.com/15/FAFAFA/000000?te
 
 "[Open Sans](https://fonts.google.com/specimen/Open+Sans)" will be used for the body.
 # 4: Features
-*
+* 
+### Future Features
+* A timer. This timer will end the game if it reaches 0. Timer can be reset by user input. Used to prevent idle games/cheating.
 # 5: Technologies Used
 This project uses the following technologies:
 * HTML5
@@ -161,7 +155,9 @@ To deploy the project, the following steps were followed.
 [View On GitHub Pages](https://jakubmrowicki.github.io/memory-keypad/)
 
 # 10: Credits & Acknowledgments
-*
+* Many thanks to my mentor, Ignatius Ukwuoma for his suggestions and overall support of this project.
+* Thanks to the Slack CI Peer Review Community for spotting issues, always great to have fresh eyes on a project like this.
+* Thanks to [https://stackoverflow.com/a/20457076](Jason Yaraghi and web-tiki) for their response about square divs that maintain their aspect ratio.
 
 ### Content
 * All written content is written by myself.
