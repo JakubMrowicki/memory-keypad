@@ -123,6 +123,9 @@ Off-White | #FAFAFA | ![#FAFAFA](https://via.placeholder.com/15/FAFAFA/000000?te
 ### Future Features
 * A timer. This timer will end the game if it reaches 0. Timer can be reset by user input. Used to prevent idle games/cheating.
 * Change the pattern generation method so that the pattern is generated on the fly instead of all at once to help prevent cheating.
+* User profiles
+* Leaderboard
+* Versus Mode to play against friends.
 # 5: Technologies Used
 This project uses the following technologies:
 * HTML5
