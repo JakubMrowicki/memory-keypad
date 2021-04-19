@@ -28,7 +28,7 @@ The goal of this website is to create a __fun and simple memory game__. The func
 
 # 1: Overview/Description
 
-This project aims to take the memory mini-game from popular indie game Among Us and extend upon it's functionality by adding a scoring and difficulty system.
+This project aims to take the memory mini-game from popular indie game Among Us and extend upon it's functionality by adding a score, life and difficulty system.
 
 The website will play a combination on the keypad and you as the player have to repeat the same combination.
 
@@ -39,6 +39,8 @@ It's a fun memory skill game used to improve your memory.
 Below are some user stories which reveal how this website is helpful.
 + 'A user: I want to __practice my memory skills__'
 + 'A user: I want to see how good my memory skills are'
++ 'A user: I want to save my highscore to compare with friends'
++ 'A user: I want a second chance to finish the game'
 + 'An Among Us player: I want to get better at the Among Us mini-game'
 
 # 3: User Experience(UX)
@@ -56,6 +58,9 @@ Below are some user stories which reveal how this website is helpful.
 ### Function Requirements
 * Provide a visual game displaying a combination pattern that is unique.
 * Allow the user to find more information about the game.
+* Allow the user to save their high score
+* Allow the user to reset their saved high score
+* Show the user their game progress
 ### Content Requirements
 * Keypad
 * Game Start button
@@ -76,6 +81,7 @@ Below are some user stories which reveal how this website is helpful.
 * Button to start the game(The game can also be started by clicking on any of the keys on the keypad)
 * Difficulty settings beside the start button. The difficulty will determine how long the pattern is.
 * Scoring system that tracks your current score and high-score(saved by cookie)
+* Button to reset saved highscore
 * Visual effects when either successful or if failed.
 * Disable inputs when playing combination.
 
@@ -118,6 +124,7 @@ Off-White | #FAFAFA | ![#FAFAFA](https://via.placeholder.com/15/FAFAFA/000000?te
     * Ability to reset highscore saved in cookie.
 * Pattern Generated using Random.org API.
     * If Random.org API returns an error, the pattern is generated locally so that the game can still be played.
+    * If user loses internet access, once again the pattern is generated locally.
 * The game will remember your highscore, last difficulty setting used and whether or not you have unlocked the easter egg
 * Scoring system that increments exponentially. Meaning that you earn more score for remembering a more complex pattern.
 * Life system that allows you to get another chance to beat the game. Using a life however will decrease your score based on the stage(later stage will lose more score if you make a mistake).
@@ -130,6 +137,7 @@ Off-White | #FAFAFA | ![#FAFAFA](https://via.placeholder.com/15/FAFAFA/000000?te
 * Leaderboard
 * Versus Mode to play against friends.
 * Sound Effects
+* Customisable keypad size(4x3, 4x4 etc)
 
 
 # 5: Technologies Used
