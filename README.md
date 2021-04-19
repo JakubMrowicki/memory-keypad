@@ -138,9 +138,12 @@ This project uses the following technologies:
 * 
 
 # 8: Code Validation
-HTML was Validated using the [W3 Validator](https://validator.w3.org/) and returned no errors.
+HTML was Validated using the [W3 Validator](https://validator.w3.org/) and returned no errors and 1 warning to be ignored.
+![warning](https://i.imgur.com/msqbuIj.png)
 
-CSS was Validated using [Jigsaw W3 Validator](https://jigsaw.w3.org/css-validator/validator) and returned no errors.
+The reason why I have prevented users from resizing the page is because on mobiles, double tapping on the screen will zoom into the game. This is undesireable and bad UX.
+
+CSS was Validated using [Jigsaw W3 Validator](https://jigsaw.w3.org/css-validator/) and returned no errors.
 
 JavaScript was Validated using [JSHint](https://jshint.com/)
 
@@ -161,6 +164,6 @@ To deploy the project, the following steps were followed.
 *
 
 ### Content
-*
+* All written content is written by myself.
 # 11: Repository Support
 For support please email at [xdshiftblue@gmail.com](mailto:xdshiftblue@gmail.com)
