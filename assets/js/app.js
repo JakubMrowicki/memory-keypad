@@ -239,38 +239,49 @@ let game = {
             }
         },
 
+        offlinepattern(length) {
+            game.notify.toast('Connection Failed', 'Could not connect to Random.org. Generating game pattern locally.');
+            game.notify.hidetoast(5000);
+            console.log(error);
+            let randomNumArray = [];
+            for (let i = 0; i < length; i++) {
+                let num = Math.floor((Math.random() * 9) + 1);
+                randomNumArray.push(num);
+            }
+            game.var.pattern = randomNumArray;
+            game.ui.maxstage.text(length - 1);
+            $('#stage-box').slideDown('fast');
+            $('#lives-box').slideDown('fast');
+            game.anim.pattern();
+        },
+
         pattern(length) { //Get Random Number Of Length Of length from random.org api
             game.notify.toast('Please Wait', 'Connecting to Random.org');
             let request = new Request('https://www.random.org/integers/?num=' + length + '&min=1&max=9&col=1&base=10&format=plain&rnd=new');
             fetch(request)
                 .then(function (response) {
                     response.text().then(function (text) {
-                        let array = Array.from(String(text), Number);
-                        array = array.filter(function (el) { //Credit: Christian C. Salvadó https://stackoverflow.com/a/281335
-                            return el > 0;
-                        });
-                        game.var.pattern = array;
-                        game.ui.maxstage.text(length - 1);
-                        $('#stage-box').slideDown('fast');
-                        $('#lives-box').slideDown('fast');
-                        game.notify.hidetoast();
-                        game.anim.pattern();
+                        if (text.indexOf('Error:') == -1) {
+                            let array = Array.from(String(text), Number);
+                            array = array.filter(function (el) { //Credit: Christian C. Salvadó https://stackoverflow.com/a/281335
+                                return el > 0;
+                            });
+                            game.var.pattern = array;
+                            game.ui.maxstage.text(length - 1);
+                            $('#stage-box').slideDown('fast');
+                            $('#lives-box').slideDown('fast');
+                            game.notify.hidetoast();
+                            game.anim.pattern();
+                        } else {
+                            console.log(text);
+                            game.task.offlinepattern(length);
+                        }
+
                     });
                 })
                 .catch(error => {
-                    game.notify.toast('Connection Failed', 'Could not connect to Random.org. Generating game pattern locally.');
-                    game.notify.hidetoast(5000);
                     console.log(error);
-                    let randomNumArray = [];
-                    for (let i = 0; i < length; i++) {
-                        let num = Math.floor((Math.random() * 9) + 1);
-                        randomNumArray.push(num);
-                    }
-                    game.var.pattern = randomNumArray;
-                    game.ui.maxstage.text(length - 1);
-                    $('#stage-box').slideDown('fast');
-                    $('#lives-box').slideDown('fast');
-                    game.anim.pattern();
+                    game.task.offlinepattern(length);
                 });
         },
 
