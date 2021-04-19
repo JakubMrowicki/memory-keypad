@@ -289,6 +289,11 @@ let game = {
             game.task.setCookie('easteregg', true, 365);
         },
 
+        resethighscore() {
+            game.task.eraseCookie('highscore');
+            location.reload();
+        },
+
         init() {
             if (game.task.getCookie('highscore') > 0) {
                 game.ui.highscore.text(game.task.getCookie('highscore'));
@@ -304,54 +309,49 @@ let game = {
                 switch (game.ui.difficulty[0].value) {
                     case "1": {
                         let title = 'Easy Difficulty';
-                        let message = 'Easy difficulty has a pattern length of 6 and you get 1 life.'
+                        let message = 'Easy difficulty has a pattern length of 6 and you get 1 life.';
                         game.notify.toast(title, message, 'fast');
                         break;
                     }
                     case "2": {
                         let title = 'Normal Difficulty';
-                        let message = 'Normal difficulty has a pattern length of 8 and you get 1 life.'
+                        let message = 'Normal difficulty has a pattern length of 8 and you get 1 life.';
                         game.notify.toast(title, message);
                         break;
                     }
                     case "3": {
                         let title = 'Hard Difficulty';
-                        let message = 'Hard difficulty has a pattern length of 10 and you get 2 lives.'
+                        let message = 'Hard difficulty has a pattern length of 10 and you get 2 lives.';
                         game.notify.toast(title, message);
                         break;
                     }
                     case "4": {
                         let title = 'Expert Difficulty';
-                        let message = 'Expert difficulty has a pattern length of 12 and you get 2 lives.'
+                        let message = 'Expert difficulty has a pattern length of 12 and you get 2 lives.';
                         game.notify.toast(title, message);
                         break;
                     }
                     case "5": {
                         let title = 'Impossible Difficulty';
-                        let message = 'Impossible difficulty has a pattern length of 50 and you get 5 lives.'
+                        let message = 'Impossible difficulty has a pattern length of 50 and you get 5 lives.';
                         game.notify.toast(title, message);
                         break;
                     }
                     default: {
                         let title = 'Error';
-                        let message = 'Something has gone wrong.'
+                        let message = 'Something has gone wrong.';
                         game.notify.toast(title, message);
                     }
                 }
 
             });
-            let i = 0;
-            for (i = 0; i < game.ui.key.length; i++) {
+            for (let i = 0; i < game.ui.key.length; i++) {
                 $(game.ui.key[i]).delay(50 * i).animate({ //Credit: Nick Craver https://stackoverflow.com/a/4549418
                     opacity: 1
-                }, 1000, function () {
-                    if (i == game.ui.key.length) {
-                        for (let j = 0; j < game.ui.key.length; j++) {
-                            game.ui.key[j].addEventListener('mousedown', game.task.play);
-                        }
-                    }
-                });
-                game.anim.light(game.ui.key[i]);
+                }, 1000);
+            }
+            for (let j = 0; j < game.ui.key.length; j++) {
+                game.ui.key[j].addEventListener('mousedown', game.task.play);
             }
 
         },
