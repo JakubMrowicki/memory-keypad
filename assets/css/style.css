@@ -17,7 +17,7 @@ body {
     background: -ms-radial-gradient(center, ellipse cover, #242a38 0%, #191c24 67%, #07080a 100%);
     background: radial-gradient(ellipse at center, #242a38 0%, #191c24 67%, #07080a 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#242a38', endColorstr='#07080a', GradientType=1);
-
+    overflow-x: hidden;
 }
 
 h1,
@@ -207,7 +207,7 @@ kbd {
 }
 
 .sm-icons:hover {
-    opacity: 0.2;
+    opacity: 0.6;
 }
 
 /*Media Queries*/
