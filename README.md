@@ -130,21 +130,21 @@ This project uses the following technologies:
 
 # 7: Problem Areas & Solutions
 * My friends were not sure if the game was active or not when I showed them.
-    * Solution: I added a glow to the keypad keys to let users know the game is started.
+    * __Solution:__ I added a glow to the keypad keys to let users know the game is started.
 * The game is diffifcult for some people.
-    * Solution: I added a life system, so that players could get another chance at finishing the game.
+    * __Solution:__ I added a life system, so that players could get another chance at finishing the game.
 * The page was a little unsightly with the about section being placed underneath the game area.
-    * Solution: I added an Info button that opens a modal. This modal now contains all the about section and how to play instructions.
+    * __Solution:__ I added an Info button that opens a modal. This modal now contains all the about section and how to play instructions.
 * It wasn't clear to the user how far they have progressed.
-    * Solution: I added a stage section. This lets the user know what stage they are at, and what the last stage is.
+    * __Solution:__ I added a stage section. This lets the user know what stage they are at, and what the last stage is.
 * I wanted to give more feedback to the user so they know what's happening while they use the app.
-    * Solution: I added toast notifications so players are notified of a new high score or their last score when a game ends.
+    * __Solution:__ I added toast notifications so players are notified of a new high score or their last score when a game ends.
 * If a user lost internet connection and tried to start the game, nothing would happen.
-    * Solution: I added functions to catch errors, both connection errors and random.org internal errors which always contain the string 'Error:'. If an error occurs, the game will generate the pattern locally using math.random.
+    * __Solution:__ I added functions to catch errors, both connection errors and random.org internal errors which always contain the string 'Error:'. If an error occurs, the game will generate the pattern locally using math.random.
 * If a user pressed on a key while the pattern is being played, the game would bug out.
-    * Solution: I added a keypause flag. If this flag is set to true, no user input is recorded.
+    * __Solution:__ I added a keypause flag. If this flag is set to true, no user input is recorded.
 * Because using up a life to continue the game takes away some score, a user can end a game with less score than they had at their peak of that same game. The issue lies in the fact that a highscore was recorded as soon as it was achieved.
-    * Solution: Highscore is only set using the score achieved by the end of the game.
+    * __Solution:__ Highscore is only set using the score achieved by the end of the game.
 
 # 8: Code Validation
 HTML was Validated using the [W3 Validator](https://validator.w3.org/) and returned no errors and 1 warning to be ignored.
