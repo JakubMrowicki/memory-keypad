@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
-    </script>
-    <script defer src="assets/js/app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
@@ -20,12 +15,14 @@
 </head>
 
 <body class="noselect">
+
     <!--Game Area Start-->
     <header class="container">
         <h1 class="display1 text-center mt-3">Memory Keypad</h1>
         <small class="d-block text-center">A memory mini-game</small>
         <div class="row">
             <div class="col-12 my-3">
+                <!--Keypad Area Containing Individual Keys-->
                 <div class="keypad">
                     <div id="1" class="square"></div>
                     <div id="2" class="square"></div>
@@ -48,10 +45,12 @@
             <div class="col-12">
                 <div class="input-group my-3 mx-auto">
                     <div class="input-group-prepend">
+                        <!--Start Button-->
                         <button id="start-button" class="btn btn-outline-secondary" type="button"
                             onclick="game.task.start();">Start
                             Game</button>
                     </div>
+                    <!--Difficulty Select-->
                     <select class="custom-select" id="difficultySelect">
                         <option value="1" selected>Easy Difficulty</option>
                         <option value="2">Normal Difficulty</option>
@@ -59,6 +58,7 @@
                         <option value="4">Expert Difficulty</option>
                     </select>
                     <div class="input-group-append">
+                        <!--Help Button-->
                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#info-modal">
                             <i class="fas fa-question-circle"></i>
                         </button>
@@ -70,6 +70,7 @@
             <div id="stage-box" class="col-6 my-3">
                 <div class="content-area">
                     <span class="d-block big text-center">
+                        <!--Stage/Max-Stage-->
                         <span id="stage">0</span>/<span id="max-stage">0</span>
                     </span>
                     <span class="d-block pb-2 text-center">Stage</span>
@@ -77,25 +78,28 @@
             </div>
             <div id="lives-box" class="col-6 my-3">
                 <div class="content-area">
+                    <!--Lives Remaining-->
                     <span id="lives" class="d-block big text-center">0</span>
                     <span class="d-block pb-2 text-center">Lives Remaining</span>
                 </div>
             </div>
             <div class="col-6 my-3">
                 <div class="content-area">
+                    <!--Score-->
                     <span id="score" class="d-block big text-center">0</span>
                     <span class="d-block pb-2 text-center">Score</span>
                 </div>
             </div>
             <div class="col-6 my-3">
                 <div class="content-area">
+                    <!--Personal Best Score-->
                     <span id="highscore" class="d-block big text-center">0</span>
                     <span class="d-block pb-2 text-center">Personal Best</span>
                 </div>
             </div>
         </div>
 
-        <!--Modal Start-->
+        <!--Informational Modal Start-->
         <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="info-modal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -165,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <!--Modal End-->
+        <!--Informational Modal End-->
 
         <!--Toast Start-->
         <div class="position-fixed top-0 right-0 p-2"
@@ -187,9 +191,9 @@
     </main>
     <!--Game Controls & Status End-->
 
-
     <footer class="container">
         <div class="row">
+            <!--Footer Social Icons Start-->
             <div class="col-md">
                 <ul class="list-unstyled d-flex flex-row mt-md-3 justify-content-center">
                     <li class="px-md-3 px-5">
@@ -206,13 +210,23 @@
                     </li>
                 </ul>
             </div>
+            <!--Footer Social Icons End-->
         </div>
         <div class="row">
+            <!--Footer Text Start-->
             <div class="col-md">
                 <span class="d-block text-center small mb-3">&copy; Memory Keypad 2021</span>
             </div>
+            <!--Footer Text End-->
         </div>
     </footer>
+
+    <!--Script Files-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
+    <script src="assets/js/app.js"></script>
 </body>
 
 </html>
